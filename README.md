@@ -13,6 +13,11 @@ The web is full of human-readable compliance guides; almost none are usable by a
 - Tooling (`scripts/`) that re-fetches authoritative sources and re-extracts on a weekly cadence.
 - Diff-based change tracking via Git, so consumers can audit *what* changed and *when* — important for a domain where deadlines and thresholds shift.
 
+## Where to find this dataset
+
+- **GitHub** (this repo) — canonical source, full extraction history, weekly update pipeline.
+- **Hugging Face Datasets** — [Aulvem/epr-compliance](https://huggingface.co/datasets/Aulvem/epr-compliance) — mirror with auto-generated dataset preview and `datasets` library integration.
+
 ## v0.1 scope
 
 | | |

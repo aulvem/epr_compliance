@@ -13,6 +13,11 @@
 - `scripts/` に、公式ソースの再取得と再抽出を行うツール群
 - 毎週の自動更新差分を Git で追跡し、「いつ何が変わったか」を後から監査可能 — 締切や閾値が頻繁に動くドメインなので重要
 
+## このデータセットの公開場所
+
+- **GitHub**(本リポジトリ)— 真実のソース、抽出履歴、週次更新パイプライン
+- **Hugging Face Datasets** — [Aulvem/epr-compliance](https://huggingface.co/datasets/Aulvem/epr-compliance) — データセットプレビューと `datasets` ライブラリ統合のミラー
+
 ## v0.1 の対象範囲
 
 | | |
