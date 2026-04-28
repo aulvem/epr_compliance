@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/OWNER/REPO/main/data/schema.json",
+  "$comment": "PUBLIC RELEASE TODO — replace OWNER/REPO in $id with the canonical GitHub owner/repo before v0.1 publication.",
+  "title": "EPR + De Minimis Tariff Compliance Dataset",
+  "description": "Schema for the epr_compliance dataset (v0.1). Two record types share the same array: packaging_epr (extended producer responsibility for packaging waste) and de_minimis_tariff (low-value import tariff thresholds). Geographic scope: EU (DE/FR/IT/ES/NL) + UK + US. English fields are master; Japanese fields are localized views. Discriminated by the record_type const.",
+  "type": "object",
+  "required": ["schema_version", "dataset_name", "records"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Semantic-ish version of this dataset schema (e.g. \"0.1\")."
+    },
+    "dataset_name": {
+      "type": "string",
+      "const": "epr_compliance"
+    },
+    "license": { "type": "string" },
+    "disclaimer": { "type": "string" },
+    "last_generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "records": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/record" }
+    }
+  },
+  "$defs": {
+    "tri_state": {
+      "description": "Tri-state allowance flag with explicit unknown.",
+      "type": "string",
+      "enum": ["yes", "no", "conditional", "unknown"]
+    },
+    "confidence_level": {
+      "description": "Confidence in the correctness of the record at last_checked_at.",
+      "type": "string",
+      "enum": ["high", "medium", "low", "unknown"]
+    },
+    "country_code": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code (uppercase). \"ZZ\" is reserved for skeleton placeholders.",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "currency_code": {
+      "type": "string",
+      "description": "ISO 4217 currency code (uppercase, 3 letters).",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "record": {
+      "description": "An EPR or tariff record. Discriminated by record_type via oneOf.",
+      "oneOf": [
+        { "$ref": "#/$defs/packaging_epr_record" },
+        { "$ref": "#/$defs/de_minimis_tariff_record" }
+      ]
+    },
+    "packaging_epr_record": {
+      "type": "object",
+      "required": [
+        "id",
+        "record_type",
+        "country",
+        "country_name_en",
+        "regulation_name_en",
+        "registration_url",
+        "last_checked_at",
+        "confidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable record identifier, e.g. \"epr_de_packaging\". Lowercase 2-letter country code embedded.",
+          "pattern": "^epr_[a-z]{2}_packaging$"
+        },
+        "record_type": { "const": "packaging_epr" },
+        "country": { "$ref": "#/$defs/country_code" },
+        "country_name_en": { "type": "string" },
+        "country_name_ja": { "type": ["string", "null"] },
+        "regulation_name_en": {
+          "type": "string",
+          "description": "Official regulation name. Original-language name preferred (e.g. \"VerpackG\", \"Triman\")."
+        },
+        "regulation_name_ja": { "type": ["string", "null"] },
+        "registration_required": { "$ref": "#/$defs/tri_state" },
+        "registration_authority_en": { "type": ["string", "null"] },
+        "registration_authority_ja": { "type": ["string", "null"] },
+        "registration_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Primary canonical URL for registration / official guidance."
+        },
+        "covered_categories": {
+          "type": "array",
+          "description": "Packaging materials covered by the regulation.",
+          "items": {
+            "type": "string",
+            "enum": ["paper", "cardboard", "plastic", "glass", "metal", "wood", "composite", "biodegradable", "other", "unknown"]
+          },
+          "uniqueItems": true
+        },
+        "reporting_frequency": {
+          "type": "string",
+          "enum": ["annual", "biannual", "quarterly", "monthly", "on_threshold", "unknown"]
+        },
+        "marketplace_liability": {
+          "$ref": "#/$defs/tri_state",
+          "description": "Whether the marketplace operator (e.g. Amazon, Etsy) bears compliance liability for non-registered sellers."
+        },
+        "penalties_en": {
+          "type": ["string", "null"],
+          "description": "Penalty range / structure as stated by the source. Preserve original currency and verbatim phrasing where possible."
+        },
+        "penalties_ja": { "type": ["string", "null"] },
+        "notes_en": { "type": ["string", "null"] },
+        "notes_ja": { "type": ["string", "null"] },
+        "source_urls": {
+          "type": "array",
+          "description": "All source URLs cited for this record. The first SHOULD match registration_url.",
+          "items": { "type": "string", "format": "uri" }
+        },
+        "last_checked_at": {
+          "type": "string",
+          "format": "date",
+          "description": "Date (YYYY-MM-DD) when the record was last verified against official sources."
+        },
+        "confidence": { "$ref": "#/$defs/confidence_level" }
+      }
+    },
+    "de_minimis_tariff_record": {
+      "type": "object",
+      "required": [
+        "id",
+        "record_type",
+        "country",
+        "country_name_en",
+        "last_checked_at",
+        "confidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable record identifier, e.g. \"tariff_us_de_minimis\".",
+          "pattern": "^tariff_[a-z]{2}_de_minimis$"
+        },
+        "record_type": { "const": "de_minimis_tariff" },
+        "country": { "$ref": "#/$defs/country_code" },
+        "country_name_en": { "type": "string" },
+        "country_name_ja": { "type": ["string", "null"] },
+        "threshold_value": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "De minimis threshold value (numeric). \"null\" if the regime has no de minimis or the threshold is unknown."
+        },
+        "threshold_currency": {
+          "anyOf": [
+            { "$ref": "#/$defs/currency_code" },
+            { "type": "null" }
+          ]
+        },
+        "threshold_value_jpy_estimate": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Approximate JPY equivalent at the time of last_checked_at. Sourced from a generic FX rate; not authoritative."
+        },
+        "applies_to_categories": {
+          "type": "array",
+          "description": "Goods categories the threshold applies to. Default \"all_goods\" if no carve-outs.",
+          "items": { "type": "string" }
+        },
+        "vat_above_threshold": {
+          "$ref": "#/$defs/tri_state",
+          "description": "Whether VAT (or sales tax equivalent) is owed once the import value exceeds the threshold."
+        },
+        "duty_above_threshold": {
+          "$ref": "#/$defs/tri_state",
+          "description": "Whether import duty (tariff) is owed once the import value exceeds the threshold."
+        },
+        "special_regimes": {
+          "type": "array",
+          "description": "Voluntary or simplified regimes that apply at or below the threshold (e.g. \"IOSS\" for EU < EUR 150, \"OSS\" for intra-EU distance sales).",
+          "items": { "type": "string" }
+        },
+        "reporting_burden_en": {
+          "type": ["string", "null"],
+          "description": "Free-text summary of declaration / VAT-collection burden. Preserve original phrasing."
+        },
+        "reporting_burden_ja": { "type": ["string", "null"] },
+        "notes_en": { "type": ["string", "null"] },
+        "notes_ja": { "type": ["string", "null"] },
+        "source_urls": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" }
+        },
+        "last_checked_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "confidence": { "$ref": "#/$defs/confidence_level" }
+      }
+    }
+  }
+}

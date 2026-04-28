@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1",
+  "dataset_name": "epr_compliance",
+  "license": "CC-BY 4.0",
+  "disclaimer": "Reference data, not legal advice. Always verify with the relevant national authority, a qualified compliance attorney, or a customs broker before taking any business action.",
+  "last_generated_at": "2026-04-28T00:00:00Z",
+  "records": [
+    {
+      "id": "epr_zz_packaging",
+      "record_type": "packaging_epr",
+      "country": "ZZ",
+      "country_name_en": "SKELETON PLACEHOLDER (target: DE / FR / IT / ES / NL / GB / US)",
+      "country_name_ja": "雛形プレースホルダ(対象予定: DE / FR / IT / ES / NL / GB / US)",
+      "regulation_name_en": "SKELETON PLACEHOLDER",
+      "regulation_name_ja": "雛形プレースホルダ",
+      "registration_required": "unknown",
+      "registration_authority_en": "unknown",
+      "registration_authority_ja": "unknown",
+      "registration_url": "https://example.com/skeleton-epr",
+      "covered_categories": [],
+      "reporting_frequency": "unknown",
+      "marketplace_liability": "unknown",
+      "penalties_en": "unknown",
+      "penalties_ja": "unknown",
+      "notes_en": "This is a skeleton record. Replace with real data for one of the v0.1 target jurisdictions: DE, FR, IT, ES, NL, GB, US.",
+      "notes_ja": "これは雛形レコードです。v0.1 対象地域(DE / FR / IT / ES / NL / GB / US)のいずれかの実データに置き換えてください。",
+      "source_urls": [],
+      "last_checked_at": "2026-04-28",
+      "confidence": "unknown"
+    },
+    {
+      "id": "tariff_zz_de_minimis",
+      "record_type": "de_minimis_tariff",
+      "country": "ZZ",
+      "country_name_en": "SKELETON PLACEHOLDER (target: DE / FR / IT / ES / NL / GB / US)",
+      "country_name_ja": "雛形プレースホルダ(対象予定: DE / FR / IT / ES / NL / GB / US)",
+      "threshold_value": null,
+      "threshold_currency": null,
+      "threshold_value_jpy_estimate": null,
+      "applies_to_categories": [],
+      "vat_above_threshold": "unknown",
+      "duty_above_threshold": "unknown",
+      "special_regimes": [],
+      "reporting_burden_en": "unknown",
+      "reporting_burden_ja": "unknown",
+      "notes_en": "This is a skeleton record. Replace with real data for one of the v0.1 target jurisdictions: DE, FR, IT, ES, NL, GB, US.",
+      "notes_ja": "これは雛形レコードです。v0.1 対象地域(DE / FR / IT / ES / NL / GB / US)のいずれかの実データに置き換えてください。",
+      "source_urls": [],
+      "last_checked_at": "2026-04-28",
+      "confidence": "unknown"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment / secrets
+.env
+*.env
+.env.local
+.env.*.local
+
+# Claude Code local settings (per-machine, not for the repo)
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Pipeline cache (fetched HTML, per-run diff markdown)
+cache/
+
+# Pipeline transient snapshot (regenerated each run by the workflow)
+data/epr_compliance_v0.1.previous.json
+
+# VSCode — local user settings only; shared workspace configs are committed
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# JetBrains IDEs — local user files only; shared run configs are committed
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/shelf/
+*.iml
+
+# Logs
+*.log
+
+# HF dataset mirror — data files are build artifacts, mirrored from data/
+# Only README.md (Dataset Card) is tracked because it has independent edit history.
+/hf/*.csv
+/hf/*.json
+/hf/.gitattributes
+# HF tooling may also auto-generate per-machine artifacts; add per-file as they appear:
+# hf/dataset_infos.json
+# hf/.huggingface/
+
+# Internal strategy docs — never commit
+/internal/
+*-internal.md

@@ -1,0 +1,75 @@
+name: weekly-update
+
+# Re-fetches every authority's official EPR / tariff page, re-runs the LLM
+# extraction, computes a diff, and opens a pull request if anything changed.
+# Manual trigger (workflow_dispatch) is enabled for ad-hoc / debug runs.
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'   # Mondays 03:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    name: Re-fetch, re-extract, diff, and open PR if changed
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pipeline dependencies
+        working-directory: scripts
+        run: npm install --no-audit --no-fund
+
+      # Snapshot the committed dataset BEFORE extract.js overwrites it.
+      # diff.js compares the new dataset against this snapshot.
+      - name: Snapshot current dataset as previous
+        run: cp data/epr_compliance_v0.1.json data/epr_compliance_v0.1.previous.json
+
+      - name: Fetch source pages
+        run: node scripts/fetch.js
+
+      - name: Extract structured data
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/extract.js
+
+      - name: Compute diff
+        id: diff
+        run: |
+          node scripts/diff.js
+          today=$(date -u +%F)
+          diff_path="cache/diff_${today}.md"
+          echo "diff_path=${diff_path}" >> "$GITHUB_OUTPUT"
+          # Decide whether the dataset actually changed.
+          if git diff --quiet -- data/epr_compliance_v0.1.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open pull request if dataset changed
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: weekly-update/${{ github.run_id }}
+          title: 'chore(data): weekly refresh'
+          commit-message: 'chore(data): weekly refresh'
+          body-path: ${{ steps.diff.outputs.diff_path }}
+          labels: |
+            weekly-update
+            automation
+          add-paths: |
+            data/epr_compliance_v0.1.json

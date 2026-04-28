@@ -1,0 +1,20 @@
+{
+  "name": "epr_compliance-pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Weekly fetch / extract / diff pipeline for the epr_compliance dataset (packaging EPR + de minimis tariff thresholds). Skeleton — implementations are TODO; deps listed but not yet installed.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "fetch": "node fetch.js",
+    "extract": "node extract.js",
+    "diff": "node diff.js",
+    "all": "npm run fetch && npm run extract && npm run diff"
+  },
+  "dependencies": {
+    "undici": "^6.0.0",
+    "@anthropic-ai/sdk": "^0.30.0"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "schema_version": "0.1",
+  "description": "URL list consumed by scripts/fetch.js. One entry per record in epr_compliance_v0.1.json. Each source must reference an authoritative origin (national EPR registration authority, customs / tariff schedule, or government tax agency). Real entries are populated in the data-investment phase that follows project skeleton sign-off.",
+  "sources": []
+}
