@@ -1,63 +1,1120 @@
 {
   "schema_version": "0.1",
   "dataset_name": "epr_compliance",
-  "license": "CC-BY 4.0",
-  "disclaimer": "Reference data, not legal advice. Always verify with the relevant national authority, a qualified compliance attorney, or a customs broker before taking any business action.",
+  "license": "CC-BY-4.0",
+  "disclaimer": "This dataset is reference data only and does not constitute legal, tax, or compliance advice. Always verify with qualified attorneys, customs brokers, or local regulatory authorities before taking any business action.",
   "last_generated_at": "2026-04-28T00:00:00Z",
   "records": [
     {
-      "id": "epr_zz_packaging",
+      "id": "epr_de_packaging",
       "record_type": "packaging_epr",
-      "country": "ZZ",
-      "country_name_en": "SKELETON PLACEHOLDER (target: DE / FR / IT / ES / NL / GB / US)",
-      "country_name_ja": "雛形プレースホルダ(対象予定: DE / FR / IT / ES / NL / GB / US)",
-      "regulation_name_en": "SKELETON PLACEHOLDER",
-      "regulation_name_ja": "雛形プレースホルダ",
-      "registration_required": "unknown",
-      "registration_authority_en": "unknown",
-      "registration_authority_ja": "unknown",
-      "registration_url": "https://example.com/skeleton-epr",
-      "covered_categories": [],
-      "reporting_frequency": "unknown",
-      "marketplace_liability": "unknown",
-      "penalties_en": "unknown",
-      "penalties_ja": "unknown",
-      "notes_en": "This is a skeleton record. Replace with real data for one of the v0.1 target jurisdictions: DE, FR, IT, ES, NL, GB, US.",
-      "notes_ja": "これは雛形レコードです。v0.1 対象地域(DE / FR / IT / ES / NL / GB / US)のいずれかの実データに置き換えてください。",
-      "source_urls": [],
-      "last_checked_at": "2026-04-28",
-      "confidence": "unknown",
+      "country": "DE",
+      "country_name_en": "Germany",
+      "country_name_ja": "ドイツ",
+      "regulation_name_en": "VerpackG (Verpackungsgesetz / Packaging Act)",
+      "regulation_name_ja": "包装法 (VerpackG / Verpackungsgesetz)",
+      "registration_required": "yes",
+      "registration_authority_en": "Zentrale Stelle Verpackungsregister (ZSVR / Central Agency Packaging Register)",
+      "registration_authority_ja": "中央包装登録局 (ZSVR / Zentrale Stelle Verpackungsregister)",
+      "registration_url": "https://www.verpackungsregister.org/en/",
+      "covered_categories": [
+        "paper",
+        "cardboard",
+        "plastic",
+        "glass",
+        "metal",
+        "wood",
+        "composite"
+      ],
+      "reporting_frequency": "annual",
+      "marketplace_liability": "yes",
+      "penalties_en": "Administrative fines of up to EUR 200,000 per infringement; potential sales/distribution ban (Vertriebsverbot). Marketplaces such as Amazon and eBay are required to verify seller LUCID registration since July 2022 and may delist non-compliant sellers.",
+      "penalties_ja": "違反1件につき最大20万ユーロの行政罰金、販売・流通停止 (Vertriebsverbot) の可能性。2022年7月以降、Amazon・eBay等のオンラインマーケットプレイスは出品者のLUCID登録を検証することが義務付けられており、未登録出品者は出品停止の対象となる",
+      "notes_en": "Two-step compliance: (1) free registration with LUCID Packaging Register issuing a 13-digit DE-prefixed registration number, (2) mandatory contract with an authorized dual system provider. No de minimis threshold — the obligation applies from the first piece of packaging placed on the German market. Foreign sellers shipping into Germany are obligated. Annual data reporting to the dual system and to LUCID is required.",
+      "notes_ja": "2段階の遵守: (1) LUCID包装登録簿への無料登録(13桁DE接頭辞の登録番号が発行される)、(2) 認定デュアルシステム事業者との契約。閾値・最低数量の例外はなく、ドイツ市場に投入される最初の包装1個から義務が発生。海外からドイツへ販売する事業者にも適用。デュアルシステムとLUCIDへの年次データ報告が必要",
+      "source_urls": [
+        "https://www.verpackungsregister.org/en/",
+        "https://www.verpackungsregister.org/en/registration/find-out-about-registrations"
+      ],
       "current_state": {
-        "status": "unknown",
-        "as_of": "2026-04-28"
+        "status": "active",
+        "as_of": "2026-04-27"
       },
-      "timeline": []
+      "timeline": [
+        {
+          "date": "2026-08-12",
+          "event_type": "rule_effective",
+          "description_en": "EU Packaging and Packaging Waste Regulation (PPWR, Regulation (EU) 2025/40) becomes applicable across all EU Member States including Germany, introducing new requirements for system participation and harmonized rules. Germany has issued a draft Packaging Act 2025 to coexist with PPWR while retaining national elements.",
+          "description_ja": "EU包装・包装廃棄物規則 (PPWR, 規則(EU) 2025/40) がドイツを含む全EU加盟国で適用開始。システム参加要件の新設および規則の調和が導入される。ドイツは独自の要素を維持しつつPPWRと並存させる包装法案2025を公表済み",
+          "source_url": "https://www.verpackungsregister.org/en/"
+        },
+        {
+          "date": "2025-02-11",
+          "event_type": "policy_legislated",
+          "description_en": "EU PPWR (Regulation (EU) 2025/40) entered into force across the EU, with an 18-month transition period before becoming applicable on 12 August 2026.",
+          "description_ja": "EU PPWR (規則(EU) 2025/40) がEU全域で発効。2026年8月12日の適用開始まで18ヶ月の移行期間が設けられた",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2022-07-01",
+          "event_type": "scope_expanded",
+          "description_en": "Registration obligation expanded to all packaging types (including transport, reusable, and deposit-bearing single-use beverage packaging), and online marketplaces became legally required to verify seller LUCID registration before allowing sales.",
+          "description_ja": "登録義務がすべての包装タイプ(輸送用、再利用可能、デポジット対象の使い捨て飲料容器を含む)に拡大。オンラインマーケットプレイスは販売許可前に出品者のLUCID登録を検証することが法的に義務付けられた",
+          "source_url": "https://www.verpackungsregister.org/en/"
+        },
+        {
+          "date": "2019-01-01",
+          "event_type": "rule_effective",
+          "description_en": "VerpackG (Packaging Act) entered into force, replacing the previous Packaging Ordinance (Verpackungsverordnung) and establishing the ZSVR / LUCID Packaging Register.",
+          "description_ja": "VerpackG(包装法)が発効。従来の包装条例(Verpackungsverordnung)を置き換え、ZSVR / LUCID包装登録簿を設置",
+          "source_url": "https://www.verpackungsregister.org/en/"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://www.verpackungsregister.org/en/"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "high"
     },
     {
-      "id": "tariff_zz_de_minimis",
-      "record_type": "de_minimis_tariff",
-      "country": "ZZ",
-      "country_name_en": "SKELETON PLACEHOLDER (target: DE / FR / IT / ES / NL / GB / US)",
-      "country_name_ja": "雛形プレースホルダ(対象予定: DE / FR / IT / ES / NL / GB / US)",
-      "threshold_value": null,
-      "threshold_currency": null,
-      "threshold_value_jpy_estimate": null,
-      "applies_to_categories": [],
-      "vat_above_threshold": "unknown",
-      "duty_above_threshold": "unknown",
-      "special_regimes": [],
-      "reporting_burden_en": "unknown",
-      "reporting_burden_ja": "unknown",
-      "notes_en": "This is a skeleton record. Replace with real data for one of the v0.1 target jurisdictions: DE, FR, IT, ES, NL, GB, US.",
-      "notes_ja": "これは雛形レコードです。v0.1 対象地域(DE / FR / IT / ES / NL / GB / US)のいずれかの実データに置き換えてください。",
-      "source_urls": [],
-      "last_checked_at": "2026-04-28",
-      "confidence": "unknown",
+      "id": "epr_fr_packaging",
+      "record_type": "packaging_epr",
+      "country": "FR",
+      "country_name_en": "France",
+      "country_name_ja": "フランス",
+      "regulation_name_en": "AGEC Law (Anti-Waste for a Circular Economy) and Decree implementing EPR for packaging",
+      "regulation_name_ja": "AGEC法(循環経済のための廃棄物対策法)および包装EPR実施令",
+      "registration_required": "yes",
+      "registration_authority_en": "ADEME (French Agency for Ecological Transition) — issues the Unique Identifier (Identifiant Unique / UID) via approved Producer Responsibility Organisations (PROs)",
+      "registration_authority_ja": "ADEME (フランス環境エネルギー管理庁) — 認定された生産者責任機関(PRO)を経由して固有識別番号(UID / Identifiant Unique)を発行",
+      "registration_url": "https://www.citeo.com/",
+      "covered_categories": [
+        "paper",
+        "cardboard",
+        "plastic",
+        "glass",
+        "metal",
+        "wood",
+        "composite"
+      ],
+      "reporting_frequency": "annual",
+      "marketplace_liability": "yes",
+      "penalties_en": "Fines up to EUR 30,000 per infraction (Articles R.541-176 to R.541-179 of the French Environmental Code). Some sources cite up to EUR 100,000 per violation in marketplace context. Sales bans on platforms such as Amazon and eBay; legal action by French authorities.",
+      "penalties_ja": "違反1件につき最大3万ユーロ(環境法典 R.541-176〜R.541-179条)。マーケットプレイス文脈では最大10万ユーロとする情報源もある。Amazon・eBay等での出品停止、フランス当局による法的措置",
+      "notes_en": "Two-branch system: household packaging via PROs such as CITEO or Léko, and professional packaging via designated sector operators. Producers must register, obtain a UID (Identifiant Unique), apply Triman + Info-Tri labelling, file annual declarations by 31 May, and pay eco-contributions. Annual declaration to PRO due 31 May. Non-French companies must appoint a French Authorized Representative (mandataire) holding a French SIREN. Triman label has been mandatory since January 2022 under AGEC.",
+      "notes_ja": "2系統制度: 家庭用包装はCITEOまたはLéko等のPRO経由、業務用包装は指定セクター事業者経由。生産者はUID (Identifiant Unique) の取得、Triman + Info-Tri表示、5月31日までの年次申告、エコ拠出金支払いが必要。フランス国外企業はフランスSIRENを保有する公認代理人(mandataire)の選任が必要。Triman表示は2022年1月以降AGECにより義務化",
+      "source_urls": [
+        "https://www.citeo.com/",
+        "https://www.ademe.fr/"
+      ],
       "current_state": {
-        "status": "unknown",
-        "as_of": "2026-04-28"
+        "status": "active",
+        "as_of": "2026-04-27"
       },
-      "timeline": []
+      "timeline": [
+        {
+          "date": "2026-08-12",
+          "event_type": "rule_effective",
+          "description_en": "EU PPWR (Regulation (EU) 2025/40) becomes applicable across all EU Member States including France, harmonizing recyclability, recycled content, and labelling requirements at EU level.",
+          "description_ja": "EU PPWR (規則(EU) 2025/40) がフランスを含む全EU加盟国で適用開始。リサイクル可能性、再生材含有率、ラベル表示要件がEUレベルで調和される",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2025-01-01",
+          "event_type": "scope_expanded",
+          "description_en": "Industrial and commercial packaging brought into the scope of EPR obligations, expanding the regime beyond household packaging.",
+          "description_ja": "産業用・商業用包装がEPR義務の対象範囲に追加され、家庭用包装を超えて制度が拡大された",
+          "source_url": "https://www.sustainable-markets.com/france-packaging-regulations-a-2025-guide-to-international-packaging-laws-part-2/"
+        },
+        {
+          "date": "2022-01-01",
+          "event_type": "rule_effective",
+          "description_en": "Triman logo and Info-Tri sorting instructions became mandatory on most packaging placed on the French market under the AGEC Law.",
+          "description_ja": "AGEC法に基づき、フランス市場に投入されるほとんどの包装に対しTrimanロゴおよびInfo-Tri選別指示の表示が義務化",
+          "source_url": "https://www.citeo.com/"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://www.citeo.com/"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "high"
+    },
+    {
+      "id": "epr_it_packaging",
+      "record_type": "packaging_epr",
+      "country": "IT",
+      "country_name_en": "Italy",
+      "country_name_ja": "イタリア",
+      "regulation_name_en": "Legislative Decree 152/2006 (Environmental Code), as amended by Legislative Decree 116/2020",
+      "regulation_name_ja": "立法令 152/2006号(環境法典)、立法令 116/2020号による改正",
+      "registration_required": "yes",
+      "registration_authority_en": "CONAI (Consorzio Nazionale Imballaggi / National Packaging Consortium) — coordinating consortium with material-specific consortia: COMIECO (paper), COREPLA (plastic), COREVE (glass), RICREA (steel), CIAL (aluminium), RILEGNO (wood)",
+      "registration_authority_ja": "CONAI (Consorzio Nazionale Imballaggi / 全国包装コンソーシアム) — 素材別コンソーシアムを統括: COMIECO(紙)、COREPLA(プラスチック)、COREVE(ガラス)、RICREA(鋼)、CIAL(アルミ)、RILEGNO(木)",
+      "registration_url": "https://www.conai.org/en/",
+      "covered_categories": [
+        "paper",
+        "cardboard",
+        "plastic",
+        "glass",
+        "metal",
+        "wood",
+        "composite"
+      ],
+      "reporting_frequency": "unknown",
+      "marketplace_liability": "unknown",
+      "penalties_en": "Approximately EUR 5,000 for producers/users not joining CONAI (Article 261 of Legislative Decree 152/06). For producers of packaging who fail to join the relevant material consortia (Article 223): fine ranging from EUR 15,500 to EUR 46,500. Past membership fees still due in any event.",
+      "penalties_ja": "CONAI未加入の生産者・使用者は約5,000ユーロ(立法令152/06号 第261条)。包装生産者が該当素材コンソーシアム未加入の場合(第223条): 15,500ユーロ〜46,500ユーロの罰金。過去の会員費は別途請求される",
+      "notes_en": "CONAI system in operation since 1998. Reporting frequency depends on declared environmental contribution (CAC) volume — monthly, quarterly, or annual. Periodic declarations are due by the 20th of the month following the reporting period. Eco-modulated fees by material recyclability (e.g. 9 plastic tiers since 2023). Importers without an Italian legal entity must appoint a third-party authorized representative. Environmental labelling per Decision 97/129/EC (alphanumeric material code) mandatory.",
+      "notes_ja": "CONAIシステムは1998年運用開始。報告頻度は申告環境拠出金(CAC)額に応じて月次/四半期/年次に区分される。定期申告は対象期間の翌月20日まで。素材のリサイクル可能性に応じたエコ変調料金(プラスチックは2023年以降9区分)。イタリア法人格を持たない輸入者は第三者公認代理人の選任が必要。Decision 97/129/EC準拠の環境ラベル(英数字素材コード)表示が義務",
+      "source_urls": [
+        "https://www.conai.org/en/",
+        "https://www.conai.org/en/businesses/joining-conai/",
+        "https://www.conai.org/en/businesses/environmental-contribution/"
+      ],
+      "current_state": {
+        "status": "active",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2026-08-12",
+          "event_type": "rule_effective",
+          "description_en": "EU PPWR (Regulation (EU) 2025/40) becomes applicable across all EU Member States including Italy. Existing CONAI system continues, with national reporting to align with new PPWR performance criteria and labelling rules.",
+          "description_ja": "EU PPWR (規則(EU) 2025/40) がイタリアを含む全EU加盟国で適用開始。既存のCONAI体制は継続するが、国内報告は新たなPPWR性能基準・ラベル規則に整合させる必要がある",
+          "source_url": "https://regsurance.com/italy-extended-producer-responsibility-epr-service-guide-registration-data-reporting/"
+        },
+        {
+          "date": "2026-01-01",
+          "event_type": "fee_changed",
+          "description_en": "Additional CAC fee increases scheduled for several materials (e.g. glass and wood) effective 1 January 2026, with plastics remaining under quarterly review.",
+          "description_ja": "2026年1月1日付で複数素材(ガラス、木材等)のCAC料金が追加引き上げ予定。プラスチックは四半期見直し継続",
+          "source_url": "https://recore-circpack.veolia.com/national-and-local-reports/europe/italy/"
+        },
+        {
+          "date": "2025-01-01",
+          "event_type": "fee_changed",
+          "description_en": "Eco-modulation fee adjustments for several materials took effect, followed by further adjustments on 1 July 2025 (wood, glass, plastics) and on 1 October 2025 (paper).",
+          "description_ja": "複数素材のエコ変調料金調整が適用開始。その後、2025年7月1日(木材・ガラス・プラスチック)、10月1日(紙)に追加調整",
+          "source_url": "https://recore-circpack.veolia.com/national-and-local-reports/europe/italy/"
+        },
+        {
+          "date": "2020-09-26",
+          "event_type": "scope_expanded",
+          "description_en": "Legislative Decree 116/2020 (transposing EU Waste Framework Directive 2018/851) reinforced EPR requirements, added registration and mandatory environmental labelling, and introduced eco-modulated CONAI fees.",
+          "description_ja": "立法令 116/2020号(EU廃棄物枠組み指令 2018/851の国内化)がEPR要件を強化し、登録および環境ラベル義務化、CONAIエコ変調料金を導入",
+          "source_url": "https://recore-circpack.veolia.com/national-and-local-reports/europe/italy/"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://www.conai.org/en/"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "medium"
+    },
+    {
+      "id": "epr_es_packaging",
+      "record_type": "packaging_epr",
+      "country": "ES",
+      "country_name_en": "Spain",
+      "country_name_ja": "スペイン",
+      "regulation_name_en": "Royal Decree 1055/2022 on Packaging and Packaging Waste (Real Decreto 1055/2022)",
+      "regulation_name_ja": "包装および包装廃棄物に関する勅令 1055/2022号 (Real Decreto 1055/2022)",
+      "registration_required": "yes",
+      "registration_authority_en": "MITERD (Ministerio para la Transición Ecológica y el Reto Demográfico) — Product Producers Registry (Registro de Productores de Producto). Compliance via Collective EPR Systems (SCRAPs) such as Ecoembes (household lightweight + paper/cardboard), Ecovidrio (glass), and Envalora (industrial/commercial)",
+      "registration_authority_ja": "MITERD (生態移行・人口問題省) — 製品生産者登録 (Registro de Productores de Producto)。集団EPRシステム(SCRAP)であるEcoembes(家庭用軽量・紙/段ボール)、Ecovidrio(ガラス)、Envalora(産業用・商業用)を経由して遵守",
+      "registration_url": "https://www.miteco.gob.es/",
+      "covered_categories": [
+        "paper",
+        "cardboard",
+        "plastic",
+        "glass",
+        "metal",
+        "wood",
+        "composite"
+      ],
+      "reporting_frequency": "annual",
+      "marketplace_liability": "yes",
+      "penalties_en": "Per Law 7/2022 (waste framework law). Detailed administrative fines apply for breaches. Sales restrictions on online platforms such as Zalando and Amazon for non-compliant cross-border sellers (registration ID 'numero de registro' is verified). Plastic packaging tax of EUR 0.45/kg (under Law 7/2022) applies to non-reusable packaging containing plastic.",
+      "penalties_ja": "法律 7/2022(廃棄物枠組み法)に基づく行政罰金。Zalonda・Amazon等のオンラインプラットフォームは非遵守の越境出品者の登録番号(numero de registro)を検証し販売制限を行う。プラスチックを含む非再利用包装には法律 7/2022に基づくプラスチック包装税0.45ユーロ/kgが適用される",
+      "notes_en": "Decree entered into force 29 December 2022. Financial responsibilities apply from 1 January 2024. Marking obligations (Article 13) apply from 1 January 2025. ENV registration number format: ENV/YEAR/XXXXXXXXX, must appear on invoices and documentation. Annual declaration deadlines: Ecoembes by 28 February; MITERD annual reporting by 31 March; EPR systems' annual report to regions by 31 May. Producers below 15 tonnes/year may submit a simplified declaration. Non-Spanish entities must appoint a Spanish Authorised Representative.",
+      "notes_ja": "勅令は2022年12月29日発効。財政的責任は2024年1月1日から、マーキング義務(第13条)は2025年1月1日から適用。ENV登録番号フォーマット: ENV/年/XXXXXXXXX。請求書・文書に表示が必要。年次申告期限: Ecoembesは2月28日、MITERDは3月31日、EPRシステムから地域への報告は5月31日。年間15トン未満の生産者は簡易申告可。スペイン国外事業者はスペイン公認代理人の選任が必要",
+      "source_urls": [
+        "https://www.miteco.gob.es/",
+        "https://www.ecoembes.com/en/registration-product-producers"
+      ],
+      "current_state": {
+        "status": "active",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2026-08-12",
+          "event_type": "rule_effective",
+          "description_en": "EU PPWR (Regulation (EU) 2025/40) becomes applicable across all EU Member States including Spain. Spain's Deposit, Return and Recycling System (SDDR) launch postponed to 2029 (originally targeted November 2026).",
+          "description_ja": "EU PPWR (規則(EU) 2025/40) がスペインを含む全EU加盟国で適用開始。スペインのデポジット・返却・リサイクル制度(SDDR)の開始は当初の2026年11月から2029年に延期",
+          "source_url": "https://recore-circpack.veolia.com/national-and-local-reports/europe/spain/"
+        },
+        {
+          "date": "2025-01-01",
+          "event_type": "rule_effective",
+          "description_en": "Marking obligations under Article 13 of Royal Decree 1055/2022 took effect. Required indicators include reusable status and (where applicable) deposit/return/refund symbol.",
+          "description_ja": "勅令 1055/2022号 第13条のマーキング義務が施行。再利用可能性の表示および該当する場合のデポジット・返却・払戻し記号の表示が必要",
+          "source_url": "https://www.ul.com/resources/environmental-labeling-packaging-spain"
+        },
+        {
+          "date": "2024-01-01",
+          "event_type": "rule_effective",
+          "description_en": "Financial responsibilities under Royal Decree 1055/2022 took effect. Producers must finance collection, sorting, and recycling of packaging waste through SCRAPs.",
+          "description_ja": "勅令 1055/2022号に基づく財政責任が発効。生産者はSCRAP経由で包装廃棄物の収集・選別・リサイクル費用を負担する義務が発生",
+          "source_url": "https://regsurance.com/spain-extended-producer-responsibility-epr-service-guide-registration-data-reporting/"
+        },
+        {
+          "date": "2022-12-29",
+          "event_type": "rule_effective",
+          "description_en": "Royal Decree 1055/2022 on Packaging and Packaging Waste entered into force, replacing previous national packaging regulations and incorporating European Directive 2018/852 into Spanish law.",
+          "description_ja": "包装・包装廃棄物に関する勅令 1055/2022号が発効。従来の国内包装規制を置き換え、欧州指令 2018/852をスペイン法に取り込んだ",
+          "source_url": "https://ecoembesempresas.com/en/packaging-regulations"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://www.ecoembes.com/en/registration-product-producers"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "high"
+    },
+    {
+      "id": "epr_nl_packaging",
+      "record_type": "packaging_epr",
+      "country": "NL",
+      "country_name_en": "Netherlands",
+      "country_name_ja": "オランダ",
+      "regulation_name_en": "Packaging Management Decree 2014 (Besluit Beheer Verpakkingen 2014) under the Environmental Management Act (Wet milieubeheer)",
+      "regulation_name_ja": "環境管理法 (Wet milieubeheer) 下の包装管理令 2014 (Besluit Beheer Verpakkingen 2014)",
+      "registration_required": "conditional",
+      "registration_authority_en": "Verpact (formerly Afvalfonds Verpakkingen / Packaging Waste Fund) — sole producer responsibility organisation for packaging. Inspectie Leefomgeving en Transport (ILT / Human Environment and Transport Inspectorate) acts as regulator. Rijkswaterstaat administers the EPR for litter and single-use plastics.",
+      "registration_authority_ja": "Verpact(旧 Afvalfonds Verpakkingen / 包装廃棄物基金)— 包装に関する唯一の生産者責任機関。Inspectie Leefomgeving en Transport (ILT / 人間環境輸送監督庁) が規制当局。Rijkswaterstaatが廃棄物・使い捨てプラスチックEPRを管理",
+      "registration_url": "https://www.verpact.nl/",
+      "covered_categories": [
+        "paper",
+        "cardboard",
+        "plastic",
+        "glass",
+        "metal",
+        "wood",
+        "composite"
+      ],
+      "reporting_frequency": "annual",
+      "marketplace_liability": "unknown",
+      "penalties_en": "Administrative fines from ILT for non-compliance, including potential additional assessments. Sales prohibition possible for failure to register. Records must be retained for at least 7 years.",
+      "penalties_ja": "ILTによる行政罰金。追加評価の対象となる可能性。登録未履行の場合は販売停止の可能性。記録は7年以上の保存義務",
+      "notes_en": "Threshold-based registration: producers/importers placing 50,000 kg or more of packaging on the Dutch market annually must register. The 50,000 kg threshold does NOT apply if you place any single-use plastic (SUP) packaging or beverage containers subject to deposit schemes — registration is mandatory regardless of weight in those cases. Note: under PPWR from 12 August 2026 the 50,000 kg threshold is expected to fall away, making registration mandatory for all. Annual declaration to Verpact due 1 April; annual report to ILT due 1 August. Indicative 2023 fees: glass EUR 0.060/kg, paper/cardboard EUR 0.012/kg, plastic EUR 1.050/kg, aluminium EUR 0.160/kg, reusable EUR 0.01/kg, SUP packaging surcharge EUR 2.30 per 1,000 units.",
+      "notes_ja": "閾値制登録: 年間50,000kg以上の包装をオランダ市場に投入する生産者・輸入者は登録義務あり。ただしデポジット対象の使い捨てプラスチック(SUP)包装・飲料容器を投入する場合は重量に関わらず登録必須。注: 2026年8月12日からのPPWR適用により50,000kg閾値は撤廃され全事業者に登録義務が拡大される見込み。Verpactへの年次申告は4月1日、ILTへの年次報告は8月1日。2023年の参考料金: ガラス0.060ユーロ/kg、紙/段ボール0.012ユーロ/kg、プラスチック1.050ユーロ/kg、アルミ0.160ユーロ/kg、再利用可能0.01ユーロ/kg、SUP包装サーチャージ1,000個あたり2.30ユーロ",
+      "source_urls": [
+        "https://business.gov.nl/regulations/packaging/",
+        "https://www.verpact.nl/"
+      ],
+      "current_state": {
+        "status": "active",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2026-08-12",
+          "event_type": "scope_expanded",
+          "description_en": "Under EU PPWR (Regulation (EU) 2025/40), the 50,000 kg/year registration threshold is expected to fall away in the Netherlands, making registration mandatory for all producers and importers regardless of volume. Marketplaces and fulfillment service providers gain 'gatekeeper' verification responsibilities.",
+          "description_ja": "EU PPWR (規則(EU) 2025/40) の適用により、オランダの年間50,000kg登録閾値は撤廃される見込みで、規模を問わず全生産者・輸入者に登録義務が拡大。マーケットプレイスおよびフルフィルメント事業者には「ゲートキーパー」としての検証責任が課される",
+          "source_url": "https://lappa.org/guides/epr/netherlands-epr/"
+        },
+        {
+          "date": "2025-02-11",
+          "event_type": "policy_legislated",
+          "description_en": "EU PPWR (Regulation (EU) 2025/40) entered into force across the EU; its provisions become applicable in the Netherlands from 12 August 2026.",
+          "description_ja": "EU PPWR (規則(EU) 2025/40) がEU全域で発効。オランダでの適用は2026年8月12日から",
+          "source_url": "https://www.sustainable-markets.com/the-netherlands-packaging-management-decree-a-2025-guide-to-international-packaging-laws-part-5/"
+        },
+        {
+          "date": "2022-01-01",
+          "event_type": "scope_expanded",
+          "description_en": "Single-use plastics (SUP) brought under the EPR for litter; producers and importers of single-use plastic products must register and contribute to litter clean-up costs.",
+          "description_ja": "使い捨てプラスチック(SUP)が廃棄物EPRの対象に追加。使い捨てプラスチック製品の生産者・輸入者は登録および廃棄物清掃費用の拠出が義務化",
+          "source_url": "https://www.kvk.nl/en/sustainability/what-you-must-do-if-you-produce-or-import-single-use-plastic-products/"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://business.gov.nl/regulations/packaging/"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "high"
+    },
+    {
+      "id": "epr_gb_packaging",
+      "record_type": "packaging_epr",
+      "country": "GB",
+      "country_name_en": "United Kingdom",
+      "country_name_ja": "イギリス",
+      "regulation_name_en": "Producer Responsibility Obligations (Packaging and Packaging Waste) Regulations 2024 — Packaging EPR (pEPR)",
+      "regulation_name_ja": "生産者責任義務(包装および包装廃棄物)規則 2024 — 包装EPR (pEPR)",
+      "registration_required": "conditional",
+      "registration_authority_en": "PackUK (scheme administrator within Defra; referred to as PecynUK in Wales) for fees and operational management. Environment Agency (England), SEPA (Scotland), Natural Resources Wales, Northern Ireland Environment Agency act as data and enforcement regulators. Producers register through their respective environmental regulator via the Report Producer Data (RPD) online portal. UK Packaging PRO formally appointed from 1 April 2026.",
+      "registration_authority_ja": "PackUK (Defra内のスキーム管理機関; ウェールズではPecynUKと呼称) が料金設定・運営管理を担当。Environment Agency(イングランド)、SEPA(スコットランド)、Natural Resources Wales、Northern Ireland Environment Agencyがデータ・執行規制当局。生産者はRPD (Report Producer Data) オンラインポータル経由で各々の環境規制機関に登録。UK Packaging PROは2026年4月1日より正式任命",
+      "registration_url": "https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do",
+      "covered_categories": [
+        "paper",
+        "cardboard",
+        "plastic",
+        "glass",
+        "metal",
+        "wood",
+        "composite"
+      ],
+      "reporting_frequency": "biannual",
+      "marketplace_liability": "unknown",
+      "penalties_en": "Variable monetary penalty on missed payment, calculated as the greater of: 5% of UK turnover (single organisation) or 2% of UK group turnover (group registration); or fees for packaging placed on the market in the relevant year. Other civil sanctions under Environment Agency enforcement policy.",
+      "penalties_ja": "支払遅延に対する変動制金銭罰: 単独組織はUK売上高の5%、グループ登録はUKグループ売上高の2%、または該当年に投入された包装の手数料額のいずれか高い方。Environment Agency執行方針に基づく他の民事制裁あり",
+      "notes_en": "Threshold-based: 'Large Producers' (turnover £2 million+ AND handling 50+ tonnes of packaging/year) pay full disposal fees. 'Small Producers' (handling 25-50 tonnes OR turnover £1m-£2m) have data reporting obligations only. 2025 base fees confirmed (per tonne): plastic £423, glass £192. From 2026-27 fees become eco-modulated using Recyclability Assessment Methodology (RAM) red-amber-green ratings, with escalating modulation factors of 1.2x, 1.6x, 2.0x over consecutive years. Large producers report H1 (1 Jan-30 Jun) data by 1 October; H2 / annual data per published deadlines. Deposit Return Scheme (DRS) for drinks containers planned for 1 October 2027.",
+      "notes_ja": "閾値制: 「大規模生産者」(売上高200万ポンド以上 かつ 年間包装量50トン以上)は処分手数料全額支払い。「小規模生産者」(年間25-50トン または 売上高100万-200万ポンド)はデータ報告義務のみ。2025年基本料金確定(1トン当たり): プラスチック423ポンド、ガラス192ポンド。2026-27年度から「リサイクル可能性評価方法 (RAM)」の赤・黄・緑評価に基づくエコ変調料金に移行し、年度ごとに1.2倍、1.6倍、2.0倍の変調係数が累積適用。大規模生産者はH1(1〜6月)データを10月1日までに報告。飲料容器のデポジット返却制度(DRS)は2027年10月1日開始予定",
+      "source_urls": [
+        "https://www.gov.uk/government/publications/packuk-operational-plan/packuk-operational-plan-2024-to-2025",
+        "https://www.gov.uk/government/publications/extended-producer-responsibility-for-packaging-2025-base-fees/extended-producer-responsibility-for-packaging-2025-base-fees",
+        "https://commonslibrary.parliament.uk/research-briefings/cbp-10352/"
+      ],
+      "current_state": {
+        "status": "active",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2026-04-01",
+          "event_type": "rule_amended",
+          "description_en": "UK Packaging PRO (industry-led, not-for-profit consortium representing nearly half of UK EPR fees) formally appointed to take on operational management of the pEPR scheme. PackUK 2026-27 operational plan forecasts disposal costs of £1.47 billion (up from £1.44 billion in Year 1).",
+          "description_ja": "UK Packaging PRO(業界主導の非営利コンソーシアムでUK EPR料金の半分弱を代表)が正式任命され、pEPRスキームの運営管理を担当。PackUKの2026-27年度運営計画は処分費用14.7億ポンド(初年度の14.4億ポンドから増加)を見込む",
+          "source_url": "https://resourcemedia.eco/article/uk-packaging-pro-formally-appointed-to-run-pepr-scheme-from-april"
+        },
+        {
+          "date": "2026-04-01",
+          "event_type": "fee_changed",
+          "description_en": "Eco-modulated fees commence in pEPR Year 2 (assessment year 2026-27). Fee modulation based on Recyclability Assessment Methodology (RAM) red-amber-green ratings, with escalating modulation factors of 1.2x, 1.6x, 2.0x over the three years 2026-27, 2027-28, 2028-29.",
+          "description_ja": "pEPR第2年度(評価年度2026-27)よりエコ変調料金開始。「リサイクル可能性評価方法(RAM)」の赤・黄・緑評価に基づき、2026-27、2027-28、2028-29の3年度にわたり1.2倍、1.6倍、2.0倍の変調係数が累積適用",
+          "source_url": "https://www.gov.uk/government/news/extended-producer-responsibility-for-packaging-announcements"
+        },
+        {
+          "date": "2025-10-01",
+          "event_type": "rule_effective",
+          "description_en": "First pEPR producer invoices issued by PackUK based on 2024 packaging data, covering household waste disposal costs for April 2025 to March 2026.",
+          "description_ja": "PackUKがpEPR初の生産者請求書を発行(2024年包装データに基づく)。2025年4月〜2026年3月の家庭廃棄物処分費用を対象",
+          "source_url": "https://www.letsrecycle.com/news/packuk-issues-first-producer-invoices-under-pepr-scheme/"
+        },
+        {
+          "date": "2025-04-01",
+          "event_type": "rule_effective",
+          "description_en": "Revised UK pEPR scheme commenced under the Producer Responsibility Obligations (Packaging and Packaging Waste) Regulations 2024, shifting full cost of household packaging waste from local authorities to producers.",
+          "description_ja": "改訂UK pEPRスキームが「生産者責任義務(包装・包装廃棄物)規則 2024」のもとで開始。家庭包装廃棄物の費用負担が自治体から生産者に完全移行",
+          "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10352/"
+        },
+        {
+          "date": "2025-01-01",
+          "event_type": "rule_effective",
+          "description_en": "Producer Responsibility Obligations (Packaging and Packaging Waste) Regulations 2024 came into force. PackUK formally launched on 21 January 2025 as the scheme administrator.",
+          "description_ja": "「生産者責任義務(包装・包装廃棄物)規則 2024」が発効。PackUKが2025年1月21日に正式発足し、スキーム管理機関に就任",
+          "source_url": "https://www.gov.uk/government/news/packuk-the-new-scheme-administrator-packaging-extended-producer-responsibility"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://www.gov.uk/government/news/packuk-the-new-scheme-administrator-packaging-extended-producer-responsibility"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "high"
+    },
+    {
+      "id": "epr_us_packaging",
+      "record_type": "packaging_epr",
+      "country": "US",
+      "country_name_en": "United States (California, representative state)",
+      "country_name_ja": "アメリカ合衆国(カリフォルニア州、代表州)",
+      "regulation_name_en": "California SB 54 — Plastic Pollution Prevention and Packaging Producer Responsibility Act",
+      "regulation_name_ja": "カリフォルニア州 SB 54 — プラスチック汚染防止および包装生産者責任法",
+      "registration_required": "yes",
+      "registration_authority_en": "CalRecycle (California Department of Resources Recycling and Recovery) — regulator. Circular Action Alliance (CAA) — designated Producer Responsibility Organization (PRO). Producers register and report through the CAA Producer Portal.",
+      "registration_authority_ja": "CalRecycle(カリフォルニア州資源リサイクル・回収局)— 規制当局。Circular Action Alliance (CAA) — 指定生産者責任機関(PRO)。生産者はCAA Producer Portal経由で登録・報告を行う",
+      "registration_url": "https://calrecycle.ca.gov/packaging/packaging-epr/",
+      "covered_categories": [
+        "paper",
+        "cardboard",
+        "plastic",
+        "glass",
+        "metal",
+        "composite"
+      ],
+      "reporting_frequency": "annual",
+      "marketplace_liability": "unknown",
+      "penalties_en": "Penalties under California Public Resources Code (PRC) Section 42060 et seq. Implementing regulations (in final rulemaking as of April 2026) will detail enforcement. Producers face penalties for late reporting or out-of-compliance status. EPS food service ware producers who failed to demonstrate 25% recycling rate by 1 January 2025 are prohibited from sale, offering, distribution, or import into California.",
+      "penalties_ja": "カリフォルニア公共資源法(PRC) 第42060条以下に基づく罰則。施行規則(2026年4月時点で最終規則制定中)に執行詳細が定められる予定。報告遅延・非遵守には罰則。2025年1月1日までに25%のリサイクル率を実証できなかったEPSフードサービスウェア生産者は、カリフォルニア州での販売・提供・流通・輸入が禁止される",
+      "notes_en": "ONE STATE OF SEVERAL — this record represents California only as the most established US state EPR regime (SB 54 signed into law 30 June 2022). Other states with packaging EPR laws include Oregon, Colorado, Maine, and Minnesota; rules vary materially by state. There is no federal US packaging EPR. Covered material: single-use packaging and single-use plastic food service ware. Goals by 2032: (1) 100% of packaging recyclable or compostable, (2) 65% recycling rate for single-use plastic packaging, (3) 25% reduction in single-use plastic packaging. Implementation has been repeatedly delayed: Governor Newsom directed regulation restart on 7 March 2025; CalRecycle re-issued draft regulations May 2025, August 2025, and January 2026; final regulations resubmitted to OAL on 19 March 2026 with effectiveness expected by 1 May 2026.",
+      "notes_ja": "複数州のうちの1州 — 本レコードはカリフォルニア州のみを対象(SB 54は2022年6月30日成立)。米国の州レベル包装EPR法はオレゴン州、コロラド州、メイン州、ミネソタ州にも存在し、内容は州により大きく異なる。連邦レベルの包装EPRは存在しない。対象材料: 使い捨て包装および使い捨てプラスチックフードサービスウェア。2032年までの目標: (1) 包装の100%がリサイクル可能または堆肥化可能、(2) 使い捨てプラスチック包装の65%リサイクル率、(3) 使い捨てプラスチック包装の25%削減。実施は度重なる遅延: 2025年3月7日にニューサム知事が規制制定の再開を指示、CalRecycleは2025年5月、8月、2026年1月に規則案を再公表、最終規則は2026年3月19日にOALに再提出され2026年5月1日までに発効見込み",
+      "source_urls": [
+        "https://calrecycle.ca.gov/packaging/packaging-epr/",
+        "https://circularactionalliance.org/california"
+      ],
+      "current_state": {
+        "status": "active",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2026-03-19",
+          "event_type": "rule_amended",
+          "description_en": "CalRecycle resubmitted final draft of SB 54 regulations to California Office of Administrative Law (OAL), triggering a 30-working-day review period with decision expected no later than 1 May 2026. Once effective, producers have 30 days to register with CAA.",
+          "description_ja": "CalRecycleがSB 54規則の最終案をカリフォルニア州行政法局(OAL)に再提出。30営業日の審査期間が開始し、2026年5月1日までに決定見込み。発効後、生産者はCAAに30日以内に登録する必要がある",
+          "source_url": "https://www.berlinpackaging.com/insights/sustainability/california-releases-new-details-on-sb-54-epr-packaging-law"
+        },
+        {
+          "date": "2026-01-09",
+          "event_type": "rule_amended",
+          "description_en": "CalRecycle withdrew the previously proposed SB 54 regulations to revise language particularly regarding food and agricultural commodities. Republished draft on 29 January 2026 with 15-day public comment period.",
+          "description_ja": "CalRecycleが従前のSB 54規則案を撤回し、特に食品・農産物に関する文言を改訂。2026年1月29日に再公表し15日間のパブリックコメント期間を設置",
+          "source_url": "https://resource-recycling.com/recycling/2026/01/12/calrecycle-withdraws-proposed-regs-for-sb-54/"
+        },
+        {
+          "date": "2025-03-07",
+          "event_type": "rule_amended",
+          "description_en": "Governor Newsom directed CalRecycle to restart the regulation drafting process, citing concerns about excessive costs to businesses and consumers. Original implementation date of 8 March 2025 missed.",
+          "description_ja": "ニューサム知事がCalRecycleに対し、企業・消費者への過度なコストへの懸念を理由に規則案の作成を再開するよう指示。当初の2025年3月8日の施行期限を超過",
+          "source_url": "https://www.bdlaw.com/publications/calrecycle-reissues-draft-sb-54-regulations-targeting-californias-plastic-packaging-epr-program/"
+        },
+        {
+          "date": "2025-01-01",
+          "event_type": "rule_effective",
+          "description_en": "EPS (expanded polystyrene) food service ware demonstration deadline: producers required to demonstrate 25% recycling rate of all EPS food service ware sold into California, or face prohibition from sale.",
+          "description_ja": "EPS(発泡ポリスチレン)フードサービスウェアの実証期限: 生産者はカリフォルニア州で販売した全EPSフードサービスウェアの25%リサイクル率の実証義務、未達成の場合は販売禁止",
+          "source_url": "https://calrecycle.ca.gov/packaging/packaging-epr/"
+        },
+        {
+          "date": "2024-01-08",
+          "event_type": "rule_effective",
+          "description_en": "CalRecycle selected Circular Action Alliance (CAA) as the inaugural single Producer Responsibility Organization (PRO) for SB 54.",
+          "description_ja": "CalRecycleがCircular Action Alliance (CAA) をSB 54の初代単一生産者責任機関(PRO)に選定",
+          "source_url": "https://circularactionalliance.org/california"
+        },
+        {
+          "date": "2022-06-30",
+          "event_type": "policy_legislated",
+          "description_en": "Governor Gavin Newsom signed SB 54 (Allen, 2022) into law, establishing California's Plastic Pollution Prevention and Packaging Producer Responsibility Act.",
+          "description_ja": "ギャビン・ニューサム知事がSB 54(Allen, 2022)に署名し、カリフォルニア州プラスチック汚染防止・包装生産者責任法が成立",
+          "source_url": "https://calrecycle.ca.gov/packaging/packaging-epr/"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://calrecycle.ca.gov/packaging/packaging-epr/"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "medium"
+    },
+    {
+      "id": "tariff_de_de_minimis",
+      "record_type": "de_minimis_tariff",
+      "country": "DE",
+      "country_name_en": "Germany",
+      "country_name_ja": "ドイツ",
+      "threshold_value": 150,
+      "threshold_currency": "EUR",
+      "threshold_value_jpy_estimate": 24000,
+      "applies_to_categories": [
+        "all_goods"
+      ],
+      "vat_above_threshold": "yes",
+      "duty_above_threshold": "yes",
+      "special_regimes": [
+        "IOSS",
+        "OSS"
+      ],
+      "reporting_burden_en": "Germany applies the EU-wide rules. Currently (April 2026), parcels valued at EUR 150 or below from non-EU countries are exempt from customs duties (VAT applies via IOSS for B2C). From 1 July 2026 a flat-rate customs duty of EUR 3 per item category (per 4-digit tariff heading) will apply to low-value consignments under the interim EU customs reform. From mid-2028, the EU Customs Data Hub is expected to enable standard tariff rates for all goods. IOSS continues to handle VAT for B2C imports up to EUR 150.",
+      "reporting_burden_ja": "ドイツはEU共通規則を適用。2026年4月時点では、EU域外から150ユーロ以下の貨物は関税免除(B2CはIOSS経由でVAT適用)。EU税関改革の暫定措置として、2026年7月1日より少額貨物に対し品目区分(HSコード4桁ヘディング)1区分につき3ユーロの定額関税が適用開始。2028年中頃以降、EU税関データハブの稼働により全貨物に通常関税率が適用される予定。IOSSは150ユーロ以下のB2C輸入のVAT処理を継続",
+      "notes_en": "Reference: Council of the European Union political agreement 13 November 2025; final legislative approval 11 February 2026; political/operational milestones include European Parliament resolution 9 July 2025. Approximately 4.6 billion parcels under EUR 150 entered the EU in 2024, with around 91% originating from China, prompting the accelerated reform timeline. Handling fees: EUR 2 fixed customs handling fee for low-value goods directly to consumers from non-EU; EUR 0.50 for low-value shipments routed to EU warehouses (effective no later than November 2026). The Germany-specific implementation may include additional national reporting via national customs authorities.",
+      "notes_ja": "参照: 欧州連合理事会2025年11月13日政治合意、2026年2月11日最終立法承認。マイルストーン: 2025年7月9日欧州議会決議。2024年にEUへ流入した150ユーロ以下の貨物は約46億個、うち約91%が中国発で、改革の前倒しを促した。手数料: EU域外から消費者直送の少額貨物には2ユーロの定額通関手数料、EU倉庫向けには0.50ユーロ(2026年11月までに発効)。ドイツ固有の実装には各国税関への追加国別報告が含まれる可能性",
+      "source_urls": [
+        "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en",
+        "https://www.avalara.com/blog/en/europe/2025/11/eu-end-150-customs-duty-exemption-2026.html"
+      ],
+      "current_state": {
+        "status": "scheduled_for_removal",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2028-06-30",
+          "event_type": "rule_amended",
+          "description_en": "EU Customs Data Hub expected to become operational mid-2028, enabling full standard tariff rate application to all e-commerce goods regardless of value, replacing the EUR 3 interim flat-rate duty.",
+          "description_ja": "EU税関データハブが2028年中頃に稼働予定。価値を問わず全ECコマース商品に通常関税率を完全適用可能となり、3ユーロの暫定定額関税は廃止される",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2026-11-01",
+          "event_type": "fee_changed",
+          "description_en": "Separate EU-wide handling fee for small parcels takes effect no later than 1 November 2026: EUR 2 for low-value goods delivered directly to EU consumers; EUR 0.50 for low-value shipments routed to EU warehouses.",
+          "description_ja": "少額貨物に対する別個のEU共通取扱手数料が遅くとも2026年11月1日までに発効: EU消費者直送の少額貨物には2ユーロ、EU倉庫向けには0.50ユーロ",
+          "source_url": "https://webinterpret.com/en/blog/the-eu-de-minimis-exemption"
+        },
+        {
+          "date": "2026-07-01",
+          "event_type": "rule_removed",
+          "description_en": "Interim EU customs reform takes effect: EUR 150 customs duty de minimis exemption is abolished. A flat-rate customs duty of EUR 3 per 4-digit tariff heading applies to low-value consignments entering the EU. IOSS VAT regime for B2C imports up to EUR 150 continues.",
+          "description_ja": "EU税関改革の暫定措置発効: 150ユーロの関税免税閾値が撤廃され、EU域内に入る少額貨物にはHSコード4桁ヘディング1区分につき3ユーロの定額関税が適用。150ユーロ以下のB2C輸入向けIOSS VAT制度は継続",
+          "source_url": "https://www.blog.shippypro.com/en/eu-customs-reform-2026-duty-exemption-abolition"
+        },
+        {
+          "date": "2026-02-11",
+          "event_type": "policy_legislated",
+          "description_en": "Council of the European Union gave final legislative approval to the new small-parcel customs duty rules, confirming the EUR 3 interim flat-rate from 1 July 2026.",
+          "description_ja": "欧州連合理事会が新たな少額貨物関税規則に最終立法承認を付与。2026年7月1日からの3ユーロ暫定定額関税が確定",
+          "source_url": "https://www.avalara.com/blog/en/europe/2025/11/eu-end-150-customs-duty-exemption-2026.html"
+        },
+        {
+          "date": "2025-11-13",
+          "event_type": "policy_announced",
+          "description_en": "Council of the European Union reached political agreement to abolish the EUR 150 customs duty exemption, accelerating the timeline from the originally proposed 2028 to 2026 in response to the surge in low-value e-commerce parcels.",
+          "description_ja": "欧州連合理事会が150ユーロ関税免税の撤廃で政治合意。少額EC貨物の急増に対応し、当初提案の2028年から2026年に時期を前倒し",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2021-07-01",
+          "event_type": "rule_effective",
+          "description_en": "Import One-Stop Shop (IOSS) regime took effect across the EU, simplifying VAT collection on B2C imports of goods valued at EUR 150 or below.",
+          "description_ja": "Import One-Stop Shop (IOSS) 制度がEU全域で発効。150ユーロ以下のB2C輸入商品のVAT徴収を簡素化",
+          "source_url": "https://www.vat-digital.com/eu-customs-reform-what-changes-on-1-july-2026/"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "high"
+    },
+    {
+      "id": "tariff_fr_de_minimis",
+      "record_type": "de_minimis_tariff",
+      "country": "FR",
+      "country_name_en": "France",
+      "country_name_ja": "フランス",
+      "threshold_value": 150,
+      "threshold_currency": "EUR",
+      "threshold_value_jpy_estimate": 24000,
+      "applies_to_categories": [
+        "all_goods"
+      ],
+      "vat_above_threshold": "yes",
+      "duty_above_threshold": "yes",
+      "special_regimes": [
+        "IOSS",
+        "OSS"
+      ],
+      "reporting_burden_en": "France applies the EU-wide rules. Currently (April 2026), parcels valued at EUR 150 or below from non-EU countries are exempt from customs duties (VAT applies via IOSS for B2C). From 1 July 2026 a flat-rate customs duty of EUR 3 per item category (per 4-digit tariff heading) will apply to low-value consignments under the interim EU customs reform. From mid-2028, the EU Customs Data Hub is expected to enable standard tariff rates for all goods. IOSS continues to handle VAT for B2C imports up to EUR 150.",
+      "reporting_burden_ja": "フランスはEU共通規則を適用。2026年4月時点では、EU域外から150ユーロ以下の貨物は関税免除(B2CはIOSS経由でVAT適用)。EU税関改革の暫定措置として、2026年7月1日より少額貨物に対し品目区分(HSコード4桁ヘディング)1区分につき3ユーロの定額関税が適用開始。2028年中頃以降、EU税関データハブの稼働により全貨物に通常関税率が適用される予定。IOSSは150ユーロ以下のB2C輸入のVAT処理を継続",
+      "notes_en": "Reference: Council of the European Union political agreement 13 November 2025; final legislative approval 11 February 2026; political/operational milestones include European Parliament resolution 9 July 2025. Approximately 4.6 billion parcels under EUR 150 entered the EU in 2024, with around 91% originating from China, prompting the accelerated reform timeline. Handling fees: EUR 2 fixed customs handling fee for low-value goods directly to consumers from non-EU; EUR 0.50 for low-value shipments routed to EU warehouses (effective no later than November 2026). The France-specific implementation may include additional national reporting via national customs authorities.",
+      "notes_ja": "参照: 欧州連合理事会2025年11月13日政治合意、2026年2月11日最終立法承認。マイルストーン: 2025年7月9日欧州議会決議。2024年にEUへ流入した150ユーロ以下の貨物は約46億個、うち約91%が中国発で、改革の前倒しを促した。手数料: EU域外から消費者直送の少額貨物には2ユーロの定額通関手数料、EU倉庫向けには0.50ユーロ(2026年11月までに発効)。フランス固有の実装には各国税関への追加国別報告が含まれる可能性",
+      "source_urls": [
+        "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en",
+        "https://www.avalara.com/blog/en/europe/2025/11/eu-end-150-customs-duty-exemption-2026.html"
+      ],
+      "current_state": {
+        "status": "scheduled_for_removal",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2028-06-30",
+          "event_type": "rule_amended",
+          "description_en": "EU Customs Data Hub expected to become operational mid-2028, enabling full standard tariff rate application to all e-commerce goods regardless of value, replacing the EUR 3 interim flat-rate duty.",
+          "description_ja": "EU税関データハブが2028年中頃に稼働予定。価値を問わず全ECコマース商品に通常関税率を完全適用可能となり、3ユーロの暫定定額関税は廃止される",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2026-11-01",
+          "event_type": "fee_changed",
+          "description_en": "Separate EU-wide handling fee for small parcels takes effect no later than 1 November 2026: EUR 2 for low-value goods delivered directly to EU consumers; EUR 0.50 for low-value shipments routed to EU warehouses.",
+          "description_ja": "少額貨物に対する別個のEU共通取扱手数料が遅くとも2026年11月1日までに発効: EU消費者直送の少額貨物には2ユーロ、EU倉庫向けには0.50ユーロ",
+          "source_url": "https://webinterpret.com/en/blog/the-eu-de-minimis-exemption"
+        },
+        {
+          "date": "2026-07-01",
+          "event_type": "rule_removed",
+          "description_en": "Interim EU customs reform takes effect: EUR 150 customs duty de minimis exemption is abolished. A flat-rate customs duty of EUR 3 per 4-digit tariff heading applies to low-value consignments entering the EU. IOSS VAT regime for B2C imports up to EUR 150 continues.",
+          "description_ja": "EU税関改革の暫定措置発効: 150ユーロの関税免税閾値が撤廃され、EU域内に入る少額貨物にはHSコード4桁ヘディング1区分につき3ユーロの定額関税が適用。150ユーロ以下のB2C輸入向けIOSS VAT制度は継続",
+          "source_url": "https://www.blog.shippypro.com/en/eu-customs-reform-2026-duty-exemption-abolition"
+        },
+        {
+          "date": "2026-02-11",
+          "event_type": "policy_legislated",
+          "description_en": "Council of the European Union gave final legislative approval to the new small-parcel customs duty rules, confirming the EUR 3 interim flat-rate from 1 July 2026.",
+          "description_ja": "欧州連合理事会が新たな少額貨物関税規則に最終立法承認を付与。2026年7月1日からの3ユーロ暫定定額関税が確定",
+          "source_url": "https://www.avalara.com/blog/en/europe/2025/11/eu-end-150-customs-duty-exemption-2026.html"
+        },
+        {
+          "date": "2025-11-13",
+          "event_type": "policy_announced",
+          "description_en": "Council of the European Union reached political agreement to abolish the EUR 150 customs duty exemption, accelerating the timeline from the originally proposed 2028 to 2026 in response to the surge in low-value e-commerce parcels.",
+          "description_ja": "欧州連合理事会が150ユーロ関税免税の撤廃で政治合意。少額EC貨物の急増に対応し、当初提案の2028年から2026年に時期を前倒し",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2021-07-01",
+          "event_type": "rule_effective",
+          "description_en": "Import One-Stop Shop (IOSS) regime took effect across the EU, simplifying VAT collection on B2C imports of goods valued at EUR 150 or below.",
+          "description_ja": "Import One-Stop Shop (IOSS) 制度がEU全域で発効。150ユーロ以下のB2C輸入商品のVAT徴収を簡素化",
+          "source_url": "https://www.vat-digital.com/eu-customs-reform-what-changes-on-1-july-2026/"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "high"
+    },
+    {
+      "id": "tariff_it_de_minimis",
+      "record_type": "de_minimis_tariff",
+      "country": "IT",
+      "country_name_en": "Italy",
+      "country_name_ja": "イタリア",
+      "threshold_value": 150,
+      "threshold_currency": "EUR",
+      "threshold_value_jpy_estimate": 24000,
+      "applies_to_categories": [
+        "all_goods"
+      ],
+      "vat_above_threshold": "yes",
+      "duty_above_threshold": "yes",
+      "special_regimes": [
+        "IOSS",
+        "OSS"
+      ],
+      "reporting_burden_en": "Italy applies the EU-wide rules. Currently (April 2026), parcels valued at EUR 150 or below from non-EU countries are exempt from customs duties (VAT applies via IOSS for B2C). From 1 July 2026 a flat-rate customs duty of EUR 3 per item category (per 4-digit tariff heading) will apply to low-value consignments under the interim EU customs reform. From mid-2028, the EU Customs Data Hub is expected to enable standard tariff rates for all goods. IOSS continues to handle VAT for B2C imports up to EUR 150.",
+      "reporting_burden_ja": "イタリアはEU共通規則を適用。2026年4月時点では、EU域外から150ユーロ以下の貨物は関税免除(B2CはIOSS経由でVAT適用)。EU税関改革の暫定措置として、2026年7月1日より少額貨物に対し品目区分(HSコード4桁ヘディング)1区分につき3ユーロの定額関税が適用開始。2028年中頃以降、EU税関データハブの稼働により全貨物に通常関税率が適用される予定。IOSSは150ユーロ以下のB2C輸入のVAT処理を継続",
+      "notes_en": "Reference: Council of the European Union political agreement 13 November 2025; final legislative approval 11 February 2026; political/operational milestones include European Parliament resolution 9 July 2025. Approximately 4.6 billion parcels under EUR 150 entered the EU in 2024, with around 91% originating from China, prompting the accelerated reform timeline. Handling fees: EUR 2 fixed customs handling fee for low-value goods directly to consumers from non-EU; EUR 0.50 for low-value shipments routed to EU warehouses (effective no later than November 2026). The Italy-specific implementation may include additional national reporting via national customs authorities.",
+      "notes_ja": "参照: 欧州連合理事会2025年11月13日政治合意、2026年2月11日最終立法承認。マイルストーン: 2025年7月9日欧州議会決議。2024年にEUへ流入した150ユーロ以下の貨物は約46億個、うち約91%が中国発で、改革の前倒しを促した。手数料: EU域外から消費者直送の少額貨物には2ユーロの定額通関手数料、EU倉庫向けには0.50ユーロ(2026年11月までに発効)。イタリア固有の実装には各国税関への追加国別報告が含まれる可能性",
+      "source_urls": [
+        "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en",
+        "https://www.avalara.com/blog/en/europe/2025/11/eu-end-150-customs-duty-exemption-2026.html"
+      ],
+      "current_state": {
+        "status": "scheduled_for_removal",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2028-06-30",
+          "event_type": "rule_amended",
+          "description_en": "EU Customs Data Hub expected to become operational mid-2028, enabling full standard tariff rate application to all e-commerce goods regardless of value, replacing the EUR 3 interim flat-rate duty.",
+          "description_ja": "EU税関データハブが2028年中頃に稼働予定。価値を問わず全ECコマース商品に通常関税率を完全適用可能となり、3ユーロの暫定定額関税は廃止される",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2026-11-01",
+          "event_type": "fee_changed",
+          "description_en": "Separate EU-wide handling fee for small parcels takes effect no later than 1 November 2026: EUR 2 for low-value goods delivered directly to EU consumers; EUR 0.50 for low-value shipments routed to EU warehouses.",
+          "description_ja": "少額貨物に対する別個のEU共通取扱手数料が遅くとも2026年11月1日までに発効: EU消費者直送の少額貨物には2ユーロ、EU倉庫向けには0.50ユーロ",
+          "source_url": "https://webinterpret.com/en/blog/the-eu-de-minimis-exemption"
+        },
+        {
+          "date": "2026-07-01",
+          "event_type": "rule_removed",
+          "description_en": "Interim EU customs reform takes effect: EUR 150 customs duty de minimis exemption is abolished. A flat-rate customs duty of EUR 3 per 4-digit tariff heading applies to low-value consignments entering the EU. IOSS VAT regime for B2C imports up to EUR 150 continues.",
+          "description_ja": "EU税関改革の暫定措置発効: 150ユーロの関税免税閾値が撤廃され、EU域内に入る少額貨物にはHSコード4桁ヘディング1区分につき3ユーロの定額関税が適用。150ユーロ以下のB2C輸入向けIOSS VAT制度は継続",
+          "source_url": "https://www.blog.shippypro.com/en/eu-customs-reform-2026-duty-exemption-abolition"
+        },
+        {
+          "date": "2026-02-11",
+          "event_type": "policy_legislated",
+          "description_en": "Council of the European Union gave final legislative approval to the new small-parcel customs duty rules, confirming the EUR 3 interim flat-rate from 1 July 2026.",
+          "description_ja": "欧州連合理事会が新たな少額貨物関税規則に最終立法承認を付与。2026年7月1日からの3ユーロ暫定定額関税が確定",
+          "source_url": "https://www.avalara.com/blog/en/europe/2025/11/eu-end-150-customs-duty-exemption-2026.html"
+        },
+        {
+          "date": "2025-11-13",
+          "event_type": "policy_announced",
+          "description_en": "Council of the European Union reached political agreement to abolish the EUR 150 customs duty exemption, accelerating the timeline from the originally proposed 2028 to 2026 in response to the surge in low-value e-commerce parcels.",
+          "description_ja": "欧州連合理事会が150ユーロ関税免税の撤廃で政治合意。少額EC貨物の急増に対応し、当初提案の2028年から2026年に時期を前倒し",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2021-07-01",
+          "event_type": "rule_effective",
+          "description_en": "Import One-Stop Shop (IOSS) regime took effect across the EU, simplifying VAT collection on B2C imports of goods valued at EUR 150 or below.",
+          "description_ja": "Import One-Stop Shop (IOSS) 制度がEU全域で発効。150ユーロ以下のB2C輸入商品のVAT徴収を簡素化",
+          "source_url": "https://www.vat-digital.com/eu-customs-reform-what-changes-on-1-july-2026/"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "high"
+    },
+    {
+      "id": "tariff_es_de_minimis",
+      "record_type": "de_minimis_tariff",
+      "country": "ES",
+      "country_name_en": "Spain",
+      "country_name_ja": "スペイン",
+      "threshold_value": 150,
+      "threshold_currency": "EUR",
+      "threshold_value_jpy_estimate": 24000,
+      "applies_to_categories": [
+        "all_goods"
+      ],
+      "vat_above_threshold": "yes",
+      "duty_above_threshold": "yes",
+      "special_regimes": [
+        "IOSS",
+        "OSS"
+      ],
+      "reporting_burden_en": "Spain applies the EU-wide rules. Currently (April 2026), parcels valued at EUR 150 or below from non-EU countries are exempt from customs duties (VAT applies via IOSS for B2C). From 1 July 2026 a flat-rate customs duty of EUR 3 per item category (per 4-digit tariff heading) will apply to low-value consignments under the interim EU customs reform. From mid-2028, the EU Customs Data Hub is expected to enable standard tariff rates for all goods. IOSS continues to handle VAT for B2C imports up to EUR 150.",
+      "reporting_burden_ja": "スペインはEU共通規則を適用。2026年4月時点では、EU域外から150ユーロ以下の貨物は関税免除(B2CはIOSS経由でVAT適用)。EU税関改革の暫定措置として、2026年7月1日より少額貨物に対し品目区分(HSコード4桁ヘディング)1区分につき3ユーロの定額関税が適用開始。2028年中頃以降、EU税関データハブの稼働により全貨物に通常関税率が適用される予定。IOSSは150ユーロ以下のB2C輸入のVAT処理を継続",
+      "notes_en": "Reference: Council of the European Union political agreement 13 November 2025; final legislative approval 11 February 2026; political/operational milestones include European Parliament resolution 9 July 2025. Approximately 4.6 billion parcels under EUR 150 entered the EU in 2024, with around 91% originating from China, prompting the accelerated reform timeline. Handling fees: EUR 2 fixed customs handling fee for low-value goods directly to consumers from non-EU; EUR 0.50 for low-value shipments routed to EU warehouses (effective no later than November 2026). The Spain-specific implementation may include additional national reporting via national customs authorities.",
+      "notes_ja": "参照: 欧州連合理事会2025年11月13日政治合意、2026年2月11日最終立法承認。マイルストーン: 2025年7月9日欧州議会決議。2024年にEUへ流入した150ユーロ以下の貨物は約46億個、うち約91%が中国発で、改革の前倒しを促した。手数料: EU域外から消費者直送の少額貨物には2ユーロの定額通関手数料、EU倉庫向けには0.50ユーロ(2026年11月までに発効)。スペイン固有の実装には各国税関への追加国別報告が含まれる可能性",
+      "source_urls": [
+        "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en",
+        "https://www.avalara.com/blog/en/europe/2025/11/eu-end-150-customs-duty-exemption-2026.html"
+      ],
+      "current_state": {
+        "status": "scheduled_for_removal",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2028-06-30",
+          "event_type": "rule_amended",
+          "description_en": "EU Customs Data Hub expected to become operational mid-2028, enabling full standard tariff rate application to all e-commerce goods regardless of value, replacing the EUR 3 interim flat-rate duty.",
+          "description_ja": "EU税関データハブが2028年中頃に稼働予定。価値を問わず全ECコマース商品に通常関税率を完全適用可能となり、3ユーロの暫定定額関税は廃止される",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2026-11-01",
+          "event_type": "fee_changed",
+          "description_en": "Separate EU-wide handling fee for small parcels takes effect no later than 1 November 2026: EUR 2 for low-value goods delivered directly to EU consumers; EUR 0.50 for low-value shipments routed to EU warehouses.",
+          "description_ja": "少額貨物に対する別個のEU共通取扱手数料が遅くとも2026年11月1日までに発効: EU消費者直送の少額貨物には2ユーロ、EU倉庫向けには0.50ユーロ",
+          "source_url": "https://webinterpret.com/en/blog/the-eu-de-minimis-exemption"
+        },
+        {
+          "date": "2026-07-01",
+          "event_type": "rule_removed",
+          "description_en": "Interim EU customs reform takes effect: EUR 150 customs duty de minimis exemption is abolished. A flat-rate customs duty of EUR 3 per 4-digit tariff heading applies to low-value consignments entering the EU. IOSS VAT regime for B2C imports up to EUR 150 continues.",
+          "description_ja": "EU税関改革の暫定措置発効: 150ユーロの関税免税閾値が撤廃され、EU域内に入る少額貨物にはHSコード4桁ヘディング1区分につき3ユーロの定額関税が適用。150ユーロ以下のB2C輸入向けIOSS VAT制度は継続",
+          "source_url": "https://www.blog.shippypro.com/en/eu-customs-reform-2026-duty-exemption-abolition"
+        },
+        {
+          "date": "2026-02-11",
+          "event_type": "policy_legislated",
+          "description_en": "Council of the European Union gave final legislative approval to the new small-parcel customs duty rules, confirming the EUR 3 interim flat-rate from 1 July 2026.",
+          "description_ja": "欧州連合理事会が新たな少額貨物関税規則に最終立法承認を付与。2026年7月1日からの3ユーロ暫定定額関税が確定",
+          "source_url": "https://www.avalara.com/blog/en/europe/2025/11/eu-end-150-customs-duty-exemption-2026.html"
+        },
+        {
+          "date": "2025-11-13",
+          "event_type": "policy_announced",
+          "description_en": "Council of the European Union reached political agreement to abolish the EUR 150 customs duty exemption, accelerating the timeline from the originally proposed 2028 to 2026 in response to the surge in low-value e-commerce parcels.",
+          "description_ja": "欧州連合理事会が150ユーロ関税免税の撤廃で政治合意。少額EC貨物の急増に対応し、当初提案の2028年から2026年に時期を前倒し",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2021-07-01",
+          "event_type": "rule_effective",
+          "description_en": "Import One-Stop Shop (IOSS) regime took effect across the EU, simplifying VAT collection on B2C imports of goods valued at EUR 150 or below.",
+          "description_ja": "Import One-Stop Shop (IOSS) 制度がEU全域で発効。150ユーロ以下のB2C輸入商品のVAT徴収を簡素化",
+          "source_url": "https://www.vat-digital.com/eu-customs-reform-what-changes-on-1-july-2026/"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "high"
+    },
+    {
+      "id": "tariff_nl_de_minimis",
+      "record_type": "de_minimis_tariff",
+      "country": "NL",
+      "country_name_en": "Netherlands",
+      "country_name_ja": "オランダ",
+      "threshold_value": 150,
+      "threshold_currency": "EUR",
+      "threshold_value_jpy_estimate": 24000,
+      "applies_to_categories": [
+        "all_goods"
+      ],
+      "vat_above_threshold": "yes",
+      "duty_above_threshold": "yes",
+      "special_regimes": [
+        "IOSS",
+        "OSS"
+      ],
+      "reporting_burden_en": "Netherlands applies the EU-wide rules. Currently (April 2026), parcels valued at EUR 150 or below from non-EU countries are exempt from customs duties (VAT applies via IOSS for B2C). From 1 July 2026 a flat-rate customs duty of EUR 3 per item category (per 4-digit tariff heading) will apply to low-value consignments under the interim EU customs reform. From mid-2028, the EU Customs Data Hub is expected to enable standard tariff rates for all goods. IOSS continues to handle VAT for B2C imports up to EUR 150.",
+      "reporting_burden_ja": "オランダはEU共通規則を適用。2026年4月時点では、EU域外から150ユーロ以下の貨物は関税免除(B2CはIOSS経由でVAT適用)。EU税関改革の暫定措置として、2026年7月1日より少額貨物に対し品目区分(HSコード4桁ヘディング)1区分につき3ユーロの定額関税が適用開始。2028年中頃以降、EU税関データハブの稼働により全貨物に通常関税率が適用される予定。IOSSは150ユーロ以下のB2C輸入のVAT処理を継続",
+      "notes_en": "Reference: Council of the European Union political agreement 13 November 2025; final legislative approval 11 February 2026; political/operational milestones include European Parliament resolution 9 July 2025. Approximately 4.6 billion parcels under EUR 150 entered the EU in 2024, with around 91% originating from China, prompting the accelerated reform timeline. Handling fees: EUR 2 fixed customs handling fee for low-value goods directly to consumers from non-EU; EUR 0.50 for low-value shipments routed to EU warehouses (effective no later than November 2026). The Netherlands-specific implementation may include additional national reporting via national customs authorities.",
+      "notes_ja": "参照: 欧州連合理事会2025年11月13日政治合意、2026年2月11日最終立法承認。マイルストーン: 2025年7月9日欧州議会決議。2024年にEUへ流入した150ユーロ以下の貨物は約46億個、うち約91%が中国発で、改革の前倒しを促した。手数料: EU域外から消費者直送の少額貨物には2ユーロの定額通関手数料、EU倉庫向けには0.50ユーロ(2026年11月までに発効)。オランダ固有の実装には各国税関への追加国別報告が含まれる可能性",
+      "source_urls": [
+        "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en",
+        "https://www.avalara.com/blog/en/europe/2025/11/eu-end-150-customs-duty-exemption-2026.html"
+      ],
+      "current_state": {
+        "status": "scheduled_for_removal",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2028-06-30",
+          "event_type": "rule_amended",
+          "description_en": "EU Customs Data Hub expected to become operational mid-2028, enabling full standard tariff rate application to all e-commerce goods regardless of value, replacing the EUR 3 interim flat-rate duty.",
+          "description_ja": "EU税関データハブが2028年中頃に稼働予定。価値を問わず全ECコマース商品に通常関税率を完全適用可能となり、3ユーロの暫定定額関税は廃止される",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2026-11-01",
+          "event_type": "fee_changed",
+          "description_en": "Separate EU-wide handling fee for small parcels takes effect no later than 1 November 2026: EUR 2 for low-value goods delivered directly to EU consumers; EUR 0.50 for low-value shipments routed to EU warehouses.",
+          "description_ja": "少額貨物に対する別個のEU共通取扱手数料が遅くとも2026年11月1日までに発効: EU消費者直送の少額貨物には2ユーロ、EU倉庫向けには0.50ユーロ",
+          "source_url": "https://webinterpret.com/en/blog/the-eu-de-minimis-exemption"
+        },
+        {
+          "date": "2026-07-01",
+          "event_type": "rule_removed",
+          "description_en": "Interim EU customs reform takes effect: EUR 150 customs duty de minimis exemption is abolished. A flat-rate customs duty of EUR 3 per 4-digit tariff heading applies to low-value consignments entering the EU. IOSS VAT regime for B2C imports up to EUR 150 continues.",
+          "description_ja": "EU税関改革の暫定措置発効: 150ユーロの関税免税閾値が撤廃され、EU域内に入る少額貨物にはHSコード4桁ヘディング1区分につき3ユーロの定額関税が適用。150ユーロ以下のB2C輸入向けIOSS VAT制度は継続",
+          "source_url": "https://www.blog.shippypro.com/en/eu-customs-reform-2026-duty-exemption-abolition"
+        },
+        {
+          "date": "2026-02-11",
+          "event_type": "policy_legislated",
+          "description_en": "Council of the European Union gave final legislative approval to the new small-parcel customs duty rules, confirming the EUR 3 interim flat-rate from 1 July 2026.",
+          "description_ja": "欧州連合理事会が新たな少額貨物関税規則に最終立法承認を付与。2026年7月1日からの3ユーロ暫定定額関税が確定",
+          "source_url": "https://www.avalara.com/blog/en/europe/2025/11/eu-end-150-customs-duty-exemption-2026.html"
+        },
+        {
+          "date": "2025-11-13",
+          "event_type": "policy_announced",
+          "description_en": "Council of the European Union reached political agreement to abolish the EUR 150 customs duty exemption, accelerating the timeline from the originally proposed 2028 to 2026 in response to the surge in low-value e-commerce parcels.",
+          "description_ja": "欧州連合理事会が150ユーロ関税免税の撤廃で政治合意。少額EC貨物の急増に対応し、当初提案の2028年から2026年に時期を前倒し",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        },
+        {
+          "date": "2021-07-01",
+          "event_type": "rule_effective",
+          "description_en": "Import One-Stop Shop (IOSS) regime took effect across the EU, simplifying VAT collection on B2C imports of goods valued at EUR 150 or below.",
+          "description_ja": "Import One-Stop Shop (IOSS) 制度がEU全域で発効。150ユーロ以下のB2C輸入商品のVAT徴収を簡素化",
+          "source_url": "https://www.vat-digital.com/eu-customs-reform-what-changes-on-1-july-2026/"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "high"
+    },
+    {
+      "id": "tariff_gb_de_minimis",
+      "record_type": "de_minimis_tariff",
+      "country": "GB",
+      "country_name_en": "United Kingdom",
+      "country_name_ja": "イギリス",
+      "threshold_value": 135,
+      "threshold_currency": "GBP",
+      "threshold_value_jpy_estimate": 26000,
+      "applies_to_categories": [
+        "all_goods"
+      ],
+      "vat_above_threshold": "yes",
+      "duty_above_threshold": "yes",
+      "special_regimes": [],
+      "reporting_burden_en": "Currently (April 2026), commercial consignments imported into the UK with a value of GBP 135 or less benefit from customs duty relief (VAT still applies under post-2021 reforms). The UK Government announced removal of this relief in Autumn Budget 2025 (26 November 2025), with full implementation by March 2029 at the latest. The £135 relief remains in place through at least 31 December 2026. Once removed, all commercial imports become potentially subject to customs duty and HMRC will collect item-level data including goods descriptions and customs values. Non-UK established sellers and online marketplace operators will be required to appoint a UK fiscal representative.",
+      "reporting_burden_ja": "2026年4月時点では、価値135ポンド以下の英国向け商業貨物は関税免除(VATは2021年改革により適用継続)。英国政府は2025年11月26日のAutumn Budget 2025で本免税の撤廃を発表、遅くとも2029年3月までに完全施行予定。135ポンド免税は少なくとも2026年12月31日まで維持。撤廃後は全商業輸入が関税対象となり、HMRCは商品説明・通関価格を含む品目レベルのデータを収集。英国非居住の出品者・オンラインマーケットプレイス事業者には英国会計代理人(fiscal representative)の選任が義務化",
+      "notes_en": "Public consultation 'Reforming the customs treatment of low value imports into the United Kingdom' ran from 26 November 2025 to 6 March 2026. Office for Budget Responsibility forecasts the change will raise over £530 million per year by 2029-30. Sellers may pay customs duty in quarterly submissions rather than at point of import, mirroring current VAT processes — subject to consultation outcome. Gifts remain outside the scope of the consultation. UK Global Tariff will form basis of new arrangements; a simplified tariff bucket system is under consideration. Volume context: HMRC sample data shows ~1.6 million low-value parcels per day in 2024, with declared trade value rising from £3.8 billion in 2023-24 to £5.9 billion in 2024-25.",
+      "notes_ja": "パブリックコンサルテーション「英国における少額輸入の通関制度改革」は2025年11月26日から2026年3月6日まで実施。Office for Budget Responsibilityは本変更により2029-30年度までに年間5億3千万ポンド超の歳入増を予測。出品者は現行VATプロセスを踏襲し、輸入時ではなく四半期申告で関税を支払う形態が検討される — コンサルテーション結果次第。贈答品はコンサルテーション対象外。新制度はUK Global Tariffを基礎とし、簡素化された関税バケット制度も検討中。規模感: HMRCサンプルデータによると2024年の少額貨物は1日約160万個、申告貿易価額は2023-24年度38億ポンドから2024-25年度59億ポンドに増加",
+      "source_urls": [
+        "https://www.gov.uk/government/consultations/reforming-the-customs-treatment-of-low-value-imports-into-the-united-kingdom",
+        "https://kpmg.com/uk/en/insights/tax/tmd-autumn-budget-custom-tax.html"
+      ],
+      "current_state": {
+        "status": "scheduled_for_removal",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2029-03-31",
+          "event_type": "rule_removed",
+          "description_en": "Full removal of GBP 135 customs duty de minimis relief expected by 31 March 2029 at the latest, per UK Autumn Budget 2025 announcement. All commercial imports become subject to customs duty.",
+          "description_ja": "英国Autumn Budget 2025の発表に基づき、遅くとも2029年3月31日までに135ポンド関税免税の完全撤廃が見込まれる。全商業輸入が関税対象となる",
+          "source_url": "https://www.gov.uk/government/consultations/reforming-the-customs-treatment-of-low-value-imports-into-the-united-kingdom"
+        },
+        {
+          "date": "2026-12-31",
+          "event_type": "policy_announced",
+          "description_en": "GBP 135 customs duty relief remains in place at least through 31 December 2026, with policy development continuing during 2026-2028 transitional period. Critical goods may receive extended relief beyond this date.",
+          "description_ja": "135ポンド関税免税は少なくとも2026年12月31日まで維持。2026-2028年の移行期間中に政策が具体化される。重要物資はこれ以降も延長免税の対象となる可能性",
+          "source_url": "https://flavorcloud.com/the-end-of-the-uk-de-minimis/"
+        },
+        {
+          "date": "2026-03-06",
+          "event_type": "policy_proposed",
+          "description_en": "UK Government public consultation 'Reforming the customs treatment of low value imports into the United Kingdom' closed on 6 March 2026. Consultation covered design of new arrangements including data collection, tariff application, optional administrative fees, and VAT collection alignment.",
+          "description_ja": "英国政府のパブリックコンサルテーション「英国における少額輸入の通関制度改革」が2026年3月6日に終了。新制度設計(データ収集、関税適用、任意の管理手数料、VAT徴収の整合性)を対象",
+          "source_url": "https://www.gov.uk/government/consultations/reforming-the-customs-treatment-of-low-value-imports-into-the-united-kingdom"
+        },
+        {
+          "date": "2025-11-26",
+          "event_type": "policy_announced",
+          "description_en": "UK Chancellor Rachel Reeves announced in Autumn Budget 2025 the government's intention to remove the GBP 135 customs duty relief for low-value imports by March 2029 at the latest. Public consultation launched same day.",
+          "description_ja": "英国財務大臣レイチェル・リーヴズが2025年Autumn Budgetにて、遅くとも2029年3月までに135ポンド関税免税を撤廃する意向を発表。同日にパブリックコンサルテーションも開始",
+          "source_url": "https://www.mha.co.uk/insights/autumn-budget-2025-major-shift-in-uk-customs-policy"
+        },
+        {
+          "date": "2021-01-01",
+          "event_type": "scope_expanded",
+          "description_en": "Post-Brexit reforms applied UK VAT to imports of all values (the GBP 15 low-value consignment relief for VAT was removed); GBP 135 relief now applies to customs duty only.",
+          "description_ja": "Brexit後の改革により、英国VATが全ての価値の輸入に適用される(VATの15ポンド低価値貨物免税は撤廃)。135ポンド免税は関税のみに適用",
+          "source_url": "https://www.gov.uk/government/consultations/reforming-the-customs-treatment-of-low-value-imports-into-the-united-kingdom"
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://www.gov.uk/government/consultations/reforming-the-customs-treatment-of-low-value-imports-into-the-united-kingdom"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "high"
+    },
+    {
+      "id": "tariff_us_de_minimis",
+      "record_type": "de_minimis_tariff",
+      "country": "US",
+      "country_name_en": "United States",
+      "country_name_ja": "アメリカ合衆国",
+      "threshold_value": 800,
+      "threshold_currency": "USD",
+      "threshold_value_jpy_estimate": 120000,
+      "applies_to_categories": [
+        "all_goods"
+      ],
+      "vat_above_threshold": "no",
+      "duty_above_threshold": "yes",
+      "special_regimes": [],
+      "reporting_burden_en": "STATUTORY THRESHOLD REMAINS USD 800 BUT DUTY-FREE BENEFIT IS SUSPENDED. Section 321 of the Tariff Act of 1930 (19 U.S.C. 1321) statutorily authorizes the USD 800 threshold for goods entering with simplified procedures. However, by Executive Order, duty-free de minimis treatment was suspended for China and Hong Kong on 2 May 2025, and globally for all countries on 29 August 2025. The suspension was continued and made permanent by Executive Order on 20 February 2026. As of April 2026, all commercial shipments to the US are subject to formal customs entry and applicable duties regardless of value. From 28 February 2026, only the ad valorem duty methodology applies to international postal shipments.",
+      "reporting_burden_ja": "法律上の閾値は800ドルのまま、ただし免税優遇は停止中。1930年関税法 第321条 (19 U.S.C. 1321) は800ドル閾値を法定。しかし大統領令により、中国・香港は2025年5月2日、全世界は2025年8月29日に免税de minimis優遇が停止。2026年2月20日の大統領令で停止が継続・恒久化。2026年4月時点、米国向け全商業貨物は価値を問わず正式通関手続および適用関税の対象。2026年2月28日以降、国際郵便貨物には従価税方式のみ適用",
+      "notes_en": "Volume context: de minimis entries grew from 153 million in fiscal year 2015 to over 1.36 billion in fiscal year 2024 (declared trade value: USD 50 million in 2012 to USD 64.6 billion in fiscal 2024). For postal shipments, a transitional flat dollar duty was used (USD 80/item for goods from countries with tariff rates below 16%; USD 160 for 16-25%; USD 200 for >25%); this option was eliminated effective 28 February 2026. All imports must include 10-digit Harmonized Tariff Schedule of the United States (HTSUS) codes filed electronically through the Automated Commercial Environment (ACE). Many e-commerce sellers may now require a continuous customs bond. Section 321 statute itself has not been repealed by Congress; the suspension is by Executive Order under Section 122 surcharge framework.",
+      "notes_ja": "規模感: de minimis申告は2015会計年度の1億5,300万件から2024会計年度の13.6億件超に増加(申告貿易価額: 2012年5,000万ドル → 2024会計年度646億ドル)。郵便貨物には移行期定額関税(関税率16%未満国は1個あたり80ドル、16-25%は160ドル、25%超は200ドル)が使用されたが、2026年2月28日付で廃止。全輸入はAutomated Commercial Environment (ACE) 経由で電子申告される10桁の米国関税分類表 (HTSUS) コードを含める必要。多くのEC出品者には継続通関ボンドが必要となる可能性。第321条本文自体は議会により廃止されておらず、停止は第122条サーチャージ枠組み下の大統領令による",
+      "source_urls": [
+        "https://www.cbp.gov/sites/default/files/2025-06/trade_information_notice_cbp-209_508c_0.pdf",
+        "https://www.congress.gov/crs-product/R48380",
+        "https://trembachlaw.com/article/de-minimis-section-321-global-suspension-ecommerce-california-february-2026"
+      ],
+      "current_state": {
+        "status": "suspended",
+        "as_of": "2026-04-27"
+      },
+      "timeline": [
+        {
+          "date": "2026-02-28",
+          "event_type": "rule_amended",
+          "description_en": "From 28 February 2026, only the ad valorem duty methodology applies to international postal shipments. The transitional flat dollar amount option (USD 80/160/200 per item) was eliminated.",
+          "description_ja": "2026年2月28日以降、国際郵便貨物には従価税方式のみ適用。移行期の定額関税オプション(1個あたり80/160/200ドル)は廃止された",
+          "source_url": "https://borderbuddy.com/blog/what-is-the-us-de-minimis-threshold-and-why-has-it-been-suspended"
+        },
+        {
+          "date": "2026-02-20",
+          "event_type": "rule_suspended",
+          "description_en": "Executive Order 'Continuing the Suspension of Duty-Free De Minimis Treatment for All Countries' (Federal Register document 2026-03829) extends the comprehensive elimination of Section 321 de minimis entry privileges, effective for goods entering on or after 12:01 a.m. EST 24 February 2026. Ties de minimis duty rates to the Section 122 surcharge framework and eliminates the flat dollar amount calculation option.",
+          "description_ja": "大統領令「全国に対する免税de minimis優遇停止の継続」(連邦官報文書 2026-03829)が、第321条de minimis通関特権の包括的廃止を継続。2026年2月24日午前0時1分東部標準時以降の輸入貨物に発効。de minimis関税率を第122条サーチャージ枠組みに連結し、定額関税方式を廃止",
+          "source_url": "https://trembachlaw.com/article/de-minimis-section-321-global-suspension-ecommerce-california-february-2026"
+        },
+        {
+          "date": "2025-08-29",
+          "event_type": "rule_suspended",
+          "description_en": "Global suspension of duty-free de minimis treatment for shipments from all countries took effect, eliminating the USD 800 duty-free threshold regardless of country of origin. Approximately 88 postal operators suspended certain parcel shipments to the US in response.",
+          "description_ja": "全世界からの貨物に対する免税de minimis優遇のグローバル停止が発効。原産国を問わず800ドルの免税閾値が事実上撤廃。これに対応して約88の郵便事業者が米国向け一部貨物の発送を停止",
+          "source_url": "https://www.avalara.com/blog/en/north-america/2024/11/de-minimis-exemption-changes-coming.html"
+        },
+        {
+          "date": "2025-05-02",
+          "event_type": "rule_suspended",
+          "description_en": "First suspension of de minimis duty-free treatment, applied specifically to imports from China and Hong Kong, marking the first time since the USD 800 threshold was established that a significant category of low-value imports became subject to mandatory duty assessment.",
+          "description_ja": "免税de minimis優遇の初の停止が中国・香港からの輸入に対して特定適用。800ドル閾値設立以来、初めて大規模カテゴリの少額輸入が必須関税評価の対象となった",
+          "source_url": "https://trembachlaw.com/article/de-minimis-section-321-global-suspension-ecommerce-california-february-2026"
+        },
+        {
+          "date": "2025-02-01",
+          "event_type": "policy_announced",
+          "description_en": "President Trump issued three separate executive orders eliminating the de minimis exemption for Canada, Mexico, and the People's Republic of China effective 4 February 2025. Trump later paused elimination for Canada and Mexico to allow time for negotiations.",
+          "description_ja": "トランプ大統領が2025年2月4日発効でカナダ、メキシコ、中国に対するde minimis免除廃止を3本の大統領令で発布。後にカナダ・メキシコについては交渉時間確保のため廃止を一時停止",
+          "source_url": "https://www.avalara.com/blog/en/north-america/2024/11/de-minimis-exemption-changes-coming.html"
+        },
+        {
+          "date": "2016-03-10",
+          "event_type": "threshold_changed",
+          "description_en": "Trade Facilitation and Trade Enforcement Act of 2015 raised US de minimis threshold from USD 200 to USD 800 (per person, per day). This 2016 increase, far exceeding inflation, was central to the rule's transformation into a major e-commerce conduit.",
+          "description_ja": "2015年貿易円滑化貿易執行法により、米国のde minimis閾値が200ドルから800ドル(1人1日あたり)に引き上げ。インフレを大きく上回る2016年のこの引上げが、本ルールの主要EC通路への変質の中核となった",
+          "source_url": "https://www.congress.gov/crs-product/R48380",
+          "value_before": 200,
+          "value_after": 800
+        },
+        {
+          "date": "2026-04-27",
+          "event_type": "initial_verification",
+          "description_en": "Record initially verified against official source.",
+          "description_ja": "公式情報源に基づいて記録を初回検証",
+          "source_url": "https://www.cbp.gov/sites/default/files/2025-06/trade_information_notice_cbp-209_508c_0.pdf"
+        }
+      ],
+      "last_checked_at": "2026-04-27",
+      "confidence": "medium"
     }
   ]
 }

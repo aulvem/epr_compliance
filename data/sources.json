@@ -1,5 +1,111 @@
 {
   "schema_version": "0.1",
-  "description": "URL list consumed by scripts/fetch.js. One entry per record in epr_compliance_v0.1.json. Each source must reference an authoritative origin (national EPR registration authority, customs / tariff schedule, or government tax agency). Real entries are populated in the data-investment phase that follows project skeleton sign-off.",
-  "sources": []
+  "description": "URL list consumed by scripts/fetch.js. One entry per record in epr_compliance_v0.1.json. Each source references the canonical regulator or government page; supplementary URLs are stored per-record in source_urls.",
+  "sources": [
+    {
+      "id": "epr_de_packaging",
+      "country": "DE",
+      "country_name_en": "Germany",
+      "regulation_name_en": "VerpackG (Verpackungsgesetz / Packaging Act)",
+      "url": "https://www.verpackungsregister.org/en/",
+      "source_language": "en"
+    },
+    {
+      "id": "epr_fr_packaging",
+      "country": "FR",
+      "country_name_en": "France",
+      "regulation_name_en": "AGEC Law (Anti-Waste for a Circular Economy) and Decree implementing EPR for packaging",
+      "url": "https://www.citeo.com/",
+      "source_language": "en"
+    },
+    {
+      "id": "epr_it_packaging",
+      "country": "IT",
+      "country_name_en": "Italy",
+      "regulation_name_en": "Legislative Decree 152/2006 (Environmental Code), as amended by Legislative Decree 116/2020",
+      "url": "https://www.conai.org/en/",
+      "source_language": "en"
+    },
+    {
+      "id": "epr_es_packaging",
+      "country": "ES",
+      "country_name_en": "Spain",
+      "regulation_name_en": "Royal Decree 1055/2022 on Packaging and Packaging Waste (Real Decreto 1055/2022)",
+      "url": "https://www.miteco.gob.es/",
+      "source_language": "en"
+    },
+    {
+      "id": "epr_nl_packaging",
+      "country": "NL",
+      "country_name_en": "Netherlands",
+      "regulation_name_en": "Packaging Management Decree 2014 (Besluit Beheer Verpakkingen 2014) under the Environmental Management Act (Wet milieubeheer)",
+      "url": "https://www.verpact.nl/",
+      "source_language": "en"
+    },
+    {
+      "id": "epr_gb_packaging",
+      "country": "GB",
+      "country_name_en": "United Kingdom",
+      "regulation_name_en": "Producer Responsibility Obligations (Packaging and Packaging Waste) Regulations 2024 — Packaging EPR (pEPR)",
+      "url": "https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do",
+      "source_language": "en"
+    },
+    {
+      "id": "epr_us_packaging",
+      "country": "US",
+      "country_name_en": "United States (California, representative state)",
+      "regulation_name_en": "California SB 54 — Plastic Pollution Prevention and Packaging Producer Responsibility Act",
+      "url": "https://calrecycle.ca.gov/packaging/packaging-epr/",
+      "source_language": "en"
+    },
+    {
+      "id": "tariff_de_de_minimis",
+      "country": "DE",
+      "country_name_en": "Germany",
+      "url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en",
+      "source_language": "en"
+    },
+    {
+      "id": "tariff_fr_de_minimis",
+      "country": "FR",
+      "country_name_en": "France",
+      "url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en",
+      "source_language": "en"
+    },
+    {
+      "id": "tariff_it_de_minimis",
+      "country": "IT",
+      "country_name_en": "Italy",
+      "url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en",
+      "source_language": "en"
+    },
+    {
+      "id": "tariff_es_de_minimis",
+      "country": "ES",
+      "country_name_en": "Spain",
+      "url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en",
+      "source_language": "en"
+    },
+    {
+      "id": "tariff_nl_de_minimis",
+      "country": "NL",
+      "country_name_en": "Netherlands",
+      "url": "https://taxation-customs.ec.europa.eu/news/e-commerce-150-eur-customs-duty-exemption-threshold-be-removed-2026-2025-11-13_en",
+      "source_language": "en"
+    },
+    {
+      "id": "tariff_gb_de_minimis",
+      "country": "GB",
+      "country_name_en": "United Kingdom",
+      "url": "https://www.gov.uk/government/consultations/reforming-the-customs-treatment-of-low-value-imports-into-the-united-kingdom",
+      "source_language": "en"
+    },
+    {
+      "id": "tariff_us_de_minimis",
+      "country": "US",
+      "country_name_en": "United States",
+      "url": "https://www.cbp.gov/sites/default/files/2025-06/trade_information_notice_cbp-209_508c_0.pdf",
+      "source_language": "en"
+    }
+  ]
 }
