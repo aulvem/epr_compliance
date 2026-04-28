@@ -19,6 +19,9 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 
+# Distribution / artifact archives — never commit
+*.zip
+
 # Pipeline cache (fetched HTML, per-run diff markdown)
 cache/
 

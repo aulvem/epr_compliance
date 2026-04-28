@@ -17,9 +17,13 @@
 
 | | |
 |---|---|
-| 対象国・地域 | 7地域(DE / FR / IT / ES / NL / GB / US) |
+| 対象国・地域 | 7地域(DE / FR / IT / ES / NL / GB / US — 米国はカリフォルニア州を代表州として収録) |
 | 各地域の制度数 | 2(包装EPR + 少額輸入関税閾値) |
-| レコード数(予定) | 約14件 |
+| レコード数 | 14件(packaging_epr 7件 + de_minimis_tariff 7件) |
+| タイムライン件数 | 84件(各レコードの append-only イベントログ。SKILL.md §2 参照) |
+| 信頼度 | high 11件 / medium 3件 |
+| 現状 | active 7件 / scheduled_for_removal 6件(規制移行期)/ suspended 1件 |
+| 言語 | 英語(master)+ 日本語(view) |
 | スキーマ | v0.1 — [skills/epr-extraction/SKILL.md](skills/epr-extraction/SKILL.md) を参照 |
 | 更新頻度 | 毎週月曜 03:00 UTC(GitHub Actions) |
 | ライセンス | CC-BY 4.0 — [LICENSE](LICENSE) を参照 |

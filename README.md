@@ -17,9 +17,13 @@ The web is full of human-readable compliance guides; almost none are usable by a
 
 | | |
 |---|---|
-| Jurisdictions | 7 (DE, FR, IT, ES, NL, GB, US) |
+| Jurisdictions | 7 (DE, FR, IT, ES, NL, GB, US — California as representative US state) |
 | Regimes per jurisdiction | 2 (packaging EPR + de minimis tariff) |
-| Records (planned) | ~14 |
+| Records | 14 (7 packaging_epr + 7 de_minimis_tariff) |
+| Timeline events | 84 (append-only event log per record; see SKILL.md §2) |
+| Confidence | 11 high, 3 medium |
+| Current state | 7 active, 6 scheduled_for_removal (regulatory transition), 1 suspended |
+| Languages | English (master) + Japanese (view) |
 | Schema | v0.1 — see [skills/epr-extraction/SKILL.md](skills/epr-extraction/SKILL.md) |
 | Update cadence | Weekly (Mondays 03:00 UTC) via GitHub Actions |
 | License | CC-BY 4.0 — see [LICENSE](LICENSE) |
