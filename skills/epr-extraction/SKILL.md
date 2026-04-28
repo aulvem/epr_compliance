@@ -83,18 +83,28 @@ Every output record MUST contain exactly the fields defined for its `record_type
 10. **Empty is meaningful.** An empty `covered_categories: []` means "the page does not enumerate categories"; use `["unknown"]` if the source explicitly says coverage is unspecified, OR keep `[]` and explain in `notes_en`. Be consistent.
 11. **VAT vs duty are independent fields.** A regime may waive duty but charge VAT (typical for EU IOSS), or vice versa. Each gets its own enum; do not collapse into one.
 12. **`threshold_currency` requires `threshold_value`.** Never `value=null, currency="EUR"`. If unsure of the value, both stay null.
-13. **Timeline events are factual milestones, not opinions.** Each timeline event must reference a primary source: government release, official announcement, legislative document, or executive order. News articles are acceptable only as supporting links, never as the canonical `source_url`.
-14. **Most recent first.** `timeline` array is sorted descending by date. Newest events at index 0. This is enforced by extraction logic, not schema.
-15. **Append-only at runtime.** Once an event is recorded with a verified `source_url`, it is never removed. If an event was logged in error, mark it with a follow-up `event_type: "rule_amended"` event explaining the correction; do not delete the original.
-16. **Initial verification is always the first timeline entry.** For every new record, the first timeline event MUST be `event_type: "initial_verification"` with `date = last_checked_at` and `description_en` stating `"Record initially verified against official source."`
-17. **`value_before` / `value_after` are for numeric continuity only.** Use them for threshold changes, fee changes, frequency changes where there is a clear "before" and "after" number. Do not use them for status changes or qualitative changes.
-18. **`current_state.status` is derived from the most recent relevant timeline event:**
-    - Latest event is `rule_removed` → status: `"removed"`
-    - Latest event is `rule_suspended` (and no `rule_resumed` since) → `"suspended"`
-    - Latest event is `policy_announced` or `policy_legislated` indicating future removal → `"scheduled_for_removal"`
-    - Otherwise default → `"active"`
+13. **Primary government/regulator sources are preferred but reputable secondary sources are acceptable for fast-moving regulatory transitions.** Each timeline event must reference an authoritative source. Government, regulator, and legislative documents are the preferred canonical source. However, in fast-moving regulatory transitions (e.g. executive orders, recent EU Council political agreements, anticipated implementing legislation), official government pages frequently lag the news cycle by weeks or months. In these cases, `source_url` MAY point to a reputable secondary source (compliance vendor analysis, major law firm publication, tax/customs advisory firm) PROVIDED THAT:
 
-    The extractor must keep these in sync.
+    a. The publication is recognised as reliable in the cross-border compliance industry (e.g. Avalara, KPMG, PwC, Deloitte, EY, Beveridge & Diamond, named law firms specialising in customs or environmental law, official trade press such as Resource Recycling, taxation-customs.ec.europa.eu, gov.uk, supplychainbrain.com).
+    b. The author or organisation is named (no anonymous blogs, no random aggregator sites).
+    c. The `notes_en` or `notes_ja` explicitly attributes the analysis (e.g. `"per Avalara compliance analysis"`).
+    d. When the corresponding government page is later published, the secondary source MUST be replaced; the replacement event is logged in `timeline` as `event_type: "rule_amended"` with description noting the source upgrade.
+
+    Anonymous blogs, paywalled news without identified authors, and SEO-driven aggregators (e.g. random "compliance guide" sites with no organisational identity) are NEVER acceptable as canonical sources.
+14. **Most recent substantive event first.** Substantive timeline events (i.e. anything except `initial_verification`) are sorted descending by date — newest at index 0. The `initial_verification` event is a foundation marker recording when this record first entered the dataset; it is fixed at the end (tail) of the timeline array, regardless of date ordering of substantive events. New substantive events are inserted at index 0; the foundation marker stays at the tail.
+15. **Append-only at runtime.** Once an event is recorded with a verified `source_url`, it is never removed. If an event was logged in error, mark it with a follow-up `event_type: "rule_amended"` event explaining the correction; do not delete the original.
+16. **Initial verification is the foundation marker, fixed at the array tail.** For every new record, an `initial_verification` event MUST be placed at the END of the timeline array (i.e. the last element), with `date = last_checked_at` and `description_en` stating `"Record initially verified against official source."` This foundation marker is excluded from descending-sort enforcement.
+17. **`value_before` / `value_after` are for numeric continuity only.** Use them for threshold changes, fee changes, frequency changes where there is a clear "before" and "after" number. Do not use them for status changes or qualitative changes.
+18. **`current_state.status` is derived from the most recent PAST substantive timeline event.** Future-dated events (announced or legislated changes that have not yet taken effect) are tracked in `timeline` but are NOT used to derive `current_state.status`.
+
+    Past substantive event → status mapping:
+    - Latest past event is `rule_removed` → `"removed"`
+    - Latest past event is `rule_suspended` (and no `rule_resumed` since) → `"suspended"`
+    - A future-dated `rule_removed` or `rule_suspended` exists in the timeline (rule scheduled to change but currently still in force) → `"scheduled_for_removal"`
+    - A future-dated `policy_announced` or `policy_legislated` indicating future removal exists → `"scheduled_for_removal"`
+    - Otherwise → `"active"`
+
+    The `current_state.as_of` field is the date the status was last verified; it should be ≥ the latest PAST substantive event date (not the latest future-dated event).
 
 ---
 
@@ -113,6 +123,8 @@ A record with `confidence: low` is still publishable; it signals to downstream u
 
 **Note on timeline freshness:** A record with `current_state.status: scheduled_for_removal` whose most recent timeline event is more than 12 months old should drop one confidence level (high → medium, medium → low). Active monitoring of evolving rules is part of confidence; dormant data is not.
 
+**Note on secondary source ratio:** If a record has more than 60% of its timeline `source_url` values pointing to secondary sources (per §2.13 definitions), drop the record's confidence by one level (high → medium, medium → low). This prevents records dominated by industry analysis from claiming the same authority as records sourced primarily from primary government documents. Re-evaluate when government sources catch up.
+
 ---
 
 ## 4. Validation (run after extraction, before commit)
@@ -128,10 +140,9 @@ The extractor MUST run these checks and either fix the record or downgrade `conf
 4. **URL check.** `registration_url` (and every `source_urls[i]`) returns HTTP 200 within the last fetch cycle. If 4xx / 5xx, mark `confidence: "low"` and add a `VALIDATION:` prefix to `notes_en`.
 5. **Date check.** `last_checked_at` is not in the future and not more than 14 days older than the run date.
 6. **JPY estimate sanity.** If `threshold_value_jpy_estimate` is set, it MUST be within a plausible factor of the original (e.g. for a EUR 150 threshold: 15,000–35,000 JPY range using realistic FX). Wildly inconsistent estimates indicate a unit error and trigger downgrade.
-7. **Timeline non-empty.** `timeline` MUST contain at least one event — the mandatory `initial_verification` entry. An empty array is valid only for the schema-shape skeleton placeholder records, never for a real extracted record.
-8. **Timeline date order.** `timeline[i].date >= timeline[i+1].date` for all `i` — sorted descending, most recent at index 0.
-9. **`current_state.as_of >= timeline[0].date`.** Current-state verification must be on or after the latest timeline event (you can't have verified state before the most recent event happened).
-10. **`current_state.status` consistency with `timeline[0]`.** Apply rule §2.18: latest event of `rule_removed` ⇒ status `removed`; `rule_suspended` (with no later `rule_resumed`) ⇒ `suspended`; `policy_announced` / `policy_legislated` indicating future removal ⇒ `scheduled_for_removal`; otherwise `active`. Mismatch is a hard validation failure.
+7. **Timeline substantive-event date order.** Substantive timeline events (everything except `initial_verification`) MUST be sorted descending by date — `timeline[i].date >= timeline[i+1].date` for all `i` where neither entry is `initial_verification`. The `initial_verification` foundation marker is fixed at the tail (last element) of the array per §2.16 and is excluded from this ordering check.
+8. **`current_state.as_of` floor.** `current_state.as_of >= max(date of all PAST substantive timeline events)`. Future-dated events do not constrain `as_of` — they are scheduled milestones, not yet-observed facts. (Schema requires `current_state` and `timeline` to exist; non-empty `timeline` is enforced by the placement rule for `initial_verification`.)
+9. **`current_state.status` consistency.** `current_state.status` MUST be derivable from the timeline per §2.18: from the most recent PAST substantive event, with future-dated `rule_removed` / `rule_suspended` / `policy_announced` / `policy_legislated` triggering `"scheduled_for_removal"`. Mismatch between the derived status and the recorded `current_state.status` is a hard validation failure.
 
 If a hard validation fails and cannot be repaired, do not delete — emit the record with `confidence: "low"` and a `notes_en` entry beginning `VALIDATION:`.
 
@@ -177,4 +188,4 @@ Explicitly NOT extracted in this version (deferred to v0.2 / v0.3):
 
 These are tracked in [docs/roadmap.md](../../docs/roadmap.md).
 
-**In scope for v0.1 (explicit):** `current_state` + `timeline` event log are first-class v0.1 fields, not deferred. Every real record carries a non-empty timeline starting with an `initial_verification` entry; see §2 rules 13–18 and §4 checks 7–10.
+**In scope for v0.1 (explicit):** `current_state` + `timeline` event log are first-class v0.1 fields, not deferred. Every real record carries a non-empty timeline ending with an `initial_verification` foundation marker at the array tail; see §2 rules 13–18 and §4 checks 7–9.
