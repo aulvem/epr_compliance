@@ -26,7 +26,12 @@
       "notes_ja": "これは雛形レコードです。v0.1 対象地域(DE / FR / IT / ES / NL / GB / US)のいずれかの実データに置き換えてください。",
       "source_urls": [],
       "last_checked_at": "2026-04-28",
-      "confidence": "unknown"
+      "confidence": "unknown",
+      "current_state": {
+        "status": "unknown",
+        "as_of": "2026-04-28"
+      },
+      "timeline": []
     },
     {
       "id": "tariff_zz_de_minimis",
@@ -47,7 +52,12 @@
       "notes_ja": "これは雛形レコードです。v0.1 対象地域(DE / FR / IT / ES / NL / GB / US)のいずれかの実データに置き換えてください。",
       "source_urls": [],
       "last_checked_at": "2026-04-28",
-      "confidence": "unknown"
+      "confidence": "unknown",
+      "current_state": {
+        "status": "unknown",
+        "as_of": "2026-04-28"
+      },
+      "timeline": []
     }
   ]
 }

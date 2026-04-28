@@ -41,6 +41,8 @@ Every output record MUST contain exactly the fields defined for its `record_type
 | `source_urls` | array of URI | All sources cited; first SHOULD equal `registration_url`. |
 | `last_checked_at` | string (ISO date) | Date the page was fetched. |
 | `confidence` | enum | `high` / `medium` / `low` / `unknown`. See §3. |
+| `current_state` | object | `{ status, as_of }`. `status` enum is `active` / `suspended` / `scheduled_for_removal` / `removed` / `unknown`. Derived from the most recent timeline event; see §2 rule 18. Full type in `data/schema.json`. |
+| `timeline` | array of object | Append-only event log. Each entry: `{ date, event_type, description_en, description_ja?, source_url, value_before?, value_after? }`. Sorted descending by date (most recent at index 0). Full type in `data/schema.json`. |
 
 ### 1.2 `de_minimis_tariff` record
 
@@ -62,6 +64,8 @@ Every output record MUST contain exactly the fields defined for its `record_type
 | `source_urls` | array of URI | |
 | `last_checked_at` | string (ISO date) | |
 | `confidence` | enum | |
+| `current_state` | object | `{ status, as_of }`. Same shape and semantics as `packaging_epr`. Full type in `data/schema.json`. |
+| `timeline` | array of object | Append-only event log. Same shape and semantics as `packaging_epr`. Particularly load-bearing for tariff records given the 2025–2029 transition (US suspension, EU €3 flat fee, UK phase-out). Full type in `data/schema.json`. |
 
 ---
 
@@ -79,6 +83,18 @@ Every output record MUST contain exactly the fields defined for its `record_type
 10. **Empty is meaningful.** An empty `covered_categories: []` means "the page does not enumerate categories"; use `["unknown"]` if the source explicitly says coverage is unspecified, OR keep `[]` and explain in `notes_en`. Be consistent.
 11. **VAT vs duty are independent fields.** A regime may waive duty but charge VAT (typical for EU IOSS), or vice versa. Each gets its own enum; do not collapse into one.
 12. **`threshold_currency` requires `threshold_value`.** Never `value=null, currency="EUR"`. If unsure of the value, both stay null.
+13. **Timeline events are factual milestones, not opinions.** Each timeline event must reference a primary source: government release, official announcement, legislative document, or executive order. News articles are acceptable only as supporting links, never as the canonical `source_url`.
+14. **Most recent first.** `timeline` array is sorted descending by date. Newest events at index 0. This is enforced by extraction logic, not schema.
+15. **Append-only at runtime.** Once an event is recorded with a verified `source_url`, it is never removed. If an event was logged in error, mark it with a follow-up `event_type: "rule_amended"` event explaining the correction; do not delete the original.
+16. **Initial verification is always the first timeline entry.** For every new record, the first timeline event MUST be `event_type: "initial_verification"` with `date = last_checked_at` and `description_en` stating `"Record initially verified against official source."`
+17. **`value_before` / `value_after` are for numeric continuity only.** Use them for threshold changes, fee changes, frequency changes where there is a clear "before" and "after" number. Do not use them for status changes or qualitative changes.
+18. **`current_state.status` is derived from the most recent relevant timeline event:**
+    - Latest event is `rule_removed` → status: `"removed"`
+    - Latest event is `rule_suspended` (and no `rule_resumed` since) → `"suspended"`
+    - Latest event is `policy_announced` or `policy_legislated` indicating future removal → `"scheduled_for_removal"`
+    - Otherwise default → `"active"`
+
+    The extractor must keep these in sync.
 
 ---
 
@@ -95,6 +111,8 @@ A record with `confidence: low` is still publishable; it signals to downstream u
 
 **Critical:** EPR and tariff data carry direct legal and financial consequence. If in doubt between two confidence levels, choose the lower one.
 
+**Note on timeline freshness:** A record with `current_state.status: scheduled_for_removal` whose most recent timeline event is more than 12 months old should drop one confidence level (high → medium, medium → low). Active monitoring of evolving rules is part of confidence; dormant data is not.
+
 ---
 
 ## 4. Validation (run after extraction, before commit)
@@ -110,6 +128,10 @@ The extractor MUST run these checks and either fix the record or downgrade `conf
 4. **URL check.** `registration_url` (and every `source_urls[i]`) returns HTTP 200 within the last fetch cycle. If 4xx / 5xx, mark `confidence: "low"` and add a `VALIDATION:` prefix to `notes_en`.
 5. **Date check.** `last_checked_at` is not in the future and not more than 14 days older than the run date.
 6. **JPY estimate sanity.** If `threshold_value_jpy_estimate` is set, it MUST be within a plausible factor of the original (e.g. for a EUR 150 threshold: 15,000–35,000 JPY range using realistic FX). Wildly inconsistent estimates indicate a unit error and trigger downgrade.
+7. **Timeline non-empty.** `timeline` MUST contain at least one event — the mandatory `initial_verification` entry. An empty array is valid only for the schema-shape skeleton placeholder records, never for a real extracted record.
+8. **Timeline date order.** `timeline[i].date >= timeline[i+1].date` for all `i` — sorted descending, most recent at index 0.
+9. **`current_state.as_of >= timeline[0].date`.** Current-state verification must be on or after the latest timeline event (you can't have verified state before the most recent event happened).
+10. **`current_state.status` consistency with `timeline[0]`.** Apply rule §2.18: latest event of `rule_removed` ⇒ status `removed`; `rule_suspended` (with no later `rule_resumed`) ⇒ `suspended`; `policy_announced` / `policy_legislated` indicating future removal ⇒ `scheduled_for_removal`; otherwise `active`. Mismatch is a hard validation failure.
 
 If a hard validation fails and cannot be repaired, do not delete — emit the record with `confidence: "low"` and a `notes_en` entry beginning `VALIDATION:`.
 
@@ -154,3 +176,5 @@ Explicitly NOT extracted in this version (deferred to v0.2 / v0.3):
 - **HS code classification advice** — never. This dataset is not a customs broker.
 
 These are tracked in [docs/roadmap.md](../../docs/roadmap.md).
+
+**In scope for v0.1 (explicit):** `current_state` + `timeline` event log are first-class v0.1 fields, not deferred. Every real record carries a non-empty timeline starting with an `initial_verification` entry; see §2 rules 13–18 and §4 checks 7–10.

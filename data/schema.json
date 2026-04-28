@@ -63,6 +63,8 @@
         "country_name_en",
         "regulation_name_en",
         "registration_url",
+        "current_state",
+        "timeline",
         "last_checked_at",
         "confidence"
       ],
@@ -123,7 +125,9 @@
           "format": "date",
           "description": "Date (YYYY-MM-DD) when the record was last verified against official sources."
         },
-        "confidence": { "$ref": "#/$defs/confidence_level" }
+        "confidence": { "$ref": "#/$defs/confidence_level" },
+        "current_state": { "$ref": "#/$defs/current_state" },
+        "timeline": { "$ref": "#/$defs/timeline" }
       }
     },
     "de_minimis_tariff_record": {
@@ -133,6 +137,8 @@
         "record_type",
         "country",
         "country_name_en",
+        "current_state",
+        "timeline",
         "last_checked_at",
         "confidence"
       ],
@@ -195,7 +201,84 @@
           "type": "string",
           "format": "date"
         },
-        "confidence": { "$ref": "#/$defs/confidence_level" }
+        "confidence": { "$ref": "#/$defs/confidence_level" },
+        "current_state": { "$ref": "#/$defs/current_state" },
+        "timeline": { "$ref": "#/$defs/timeline" }
+      }
+    },
+    "current_state": {
+      "type": "object",
+      "required": ["status", "as_of"],
+      "description": "Operational state of the rule as of as_of date. status is derived from the most recent relevant timeline event; see SKILL.md §2 rule 18.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["active", "suspended", "scheduled_for_removal", "removed", "unknown"],
+          "description": "Operational status of the rule as of as_of date. active = in normal force; suspended = temporarily halted; scheduled_for_removal = official phase-out announced; removed = fully repealed; unknown = state not determinable."
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date",
+          "description": "Date when the status was last verified."
+        }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "description": "Append-only event log for this rule. Sorted descending by date (most recent at index 0). Sort order is enforced by extraction logic, not schema. The first record (chronologically) MUST be an initial_verification event.",
+      "items": {
+        "type": "object",
+        "required": ["date", "event_type", "description_en", "source_url"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date the event occurred or was announced."
+          },
+          "event_type": {
+            "type": "string",
+            "enum": [
+              "initial_verification",
+              "policy_announced",
+              "policy_proposed",
+              "policy_legislated",
+              "rule_effective",
+              "rule_amended",
+              "rule_suspended",
+              "rule_resumed",
+              "rule_removed",
+              "registration_deadline",
+              "reporting_frequency_changed",
+              "penalty_changed",
+              "scope_expanded",
+              "scope_narrowed",
+              "fee_changed",
+              "threshold_changed",
+              "other"
+            ]
+          },
+          "description_en": {
+            "type": "string",
+            "description": "1-2 sentence factual description in English. Verbatim phrasing from source preferred where it preserves meaning."
+          },
+          "description_ja": {
+            "type": ["string", "null"],
+            "description": "Japanese gloss of description_en. Optional but recommended for major events."
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Single canonical source for this specific event. Must be a primary source (government release, official announcement, legislative document, or executive order) — not a news article."
+          },
+          "value_before": {
+            "type": ["string", "number", "null"],
+            "description": "Optional: prior value (e.g. previous threshold, previous fee). For numeric continuity changes only — do not use for status or qualitative changes."
+          },
+          "value_after": {
+            "type": ["string", "number", "null"],
+            "description": "Optional: new value. For numeric continuity changes only — do not use for status or qualitative changes."
+          }
+        }
       }
     }
   }
