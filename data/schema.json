@@ -1,7 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/OWNER/REPO/main/data/schema.json",
-  "$comment": "PUBLIC RELEASE TODO — replace OWNER/REPO in $id with the canonical GitHub owner/repo before v0.1 publication.",
+  "$id": "https://raw.githubusercontent.com/aulvem/epr_compliance/main/data/schema.json",
   "title": "EPR + De Minimis Tariff Compliance Dataset",
   "description": "Schema for the epr_compliance dataset (v0.1). Two record types share the same array: packaging_epr (extended producer responsibility for packaging waste) and de_minimis_tariff (low-value import tariff thresholds). Geographic scope: EU (DE/FR/IT/ES/NL) + UK + US. English fields are master; Japanese fields are localized views. Discriminated by the record_type const.",
   "type": "object",

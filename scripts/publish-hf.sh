@@ -48,6 +48,21 @@ if [ -z "${HF_TOKEN:-}" ]; then
   fi
 fi
 
+# --- bit-identical sync check ---------------------------------------------
+# Refuse to publish if the HF mirror has drifted from the canonical data/ tree.
+# The HF dataset card (hf/README.md) is mirror-only and intentionally diverges
+# from the GitHub README; only the data files must be byte-for-byte identical.
+
+echo "Verifying data/ and hf/ are bit-identical..."
+for f in epr_compliance_v0.1.json epr_compliance_v0.1.csv schema.json; do
+  if ! cmp -s "data/$f" "hf/$f"; then
+    echo "ERROR: data/$f and hf/$f differ. Aborting publish." >&2
+    echo "Run: cp data/$f hf/$f to resync." >&2
+    exit 1
+  fi
+done
+echo "  data/ and hf/ verified bit-identical."
+
 # --- upload ----------------------------------------------------------------
 
 echo "Uploading $HF_DIR/ -> dataset $HF_USERNAME/$DATASET_NAME"

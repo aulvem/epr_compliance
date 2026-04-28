@@ -10,6 +10,7 @@ tags:
   - tariff
   - eu
   - compliance
+  - structured-data
 size_categories:
   - n<1K
 task_categories:
@@ -23,43 +24,42 @@ configs:
         path: epr_compliance_v0.1.csv
 ---
 
-# EPR + De Minimis Tariff Compliance Dataset
+# EPR + De Minimis Tariff Compliance Dataset (Cross-Border, EU/UK/US)
 
-A structured, machine-readable dataset of two adjacent cross-border e-commerce compliance regimes for major EU member states, the UK, and the US:
-
-- **Packaging EPR** — extended producer responsibility for packaging waste (registration, reporting, materials covered, marketplace liability, penalties).
-- **De minimis tariff thresholds** — low-value-import thresholds under which VAT and / or duty are waived or simplified, plus relevant special regimes (IOSS, OSS, etc.).
-
-Designed to be directly consumable by AI agents and downstream e-commerce tooling without scraping.
+A structured, machine-readable dataset of packaging Extended Producer Responsibility (EPR) regimes and de minimis customs thresholds across EU, UK, and US, designed for cross-border e-commerce sellers and AI agents.
 
 ## Overview
 
-Cross-border sellers — Shopify stores, Amazon FBA, Etsy shops — need to know two things before shipping into a market: (1) whether they need to pre-register for the destination's packaging EPR scheme, and (2) above what import value VAT / duty kick in. Both topics are scattered across government PDFs, law-firm summaries, and outdated blog posts. `epr_compliance` provides the missing structured layer.
+The cross-border compliance landscape changes constantly: EPR regimes expand scope, de minimis thresholds get suspended or reformed, EU PPWR phases in. Most existing online resources are human-readable narrative — almost none are usable by AI agents or typed applications without scraping. `epr_compliance` fills that gap with a typed schema, explicit `current_state` flags, and an append-only `timeline` per record that records what already happened AND what is scheduled.
 
-Every record cites authoritative sources (national EPR registration authorities, customs schedules, tax agencies) and carries an explicit `last_checked_at` date plus a `confidence` rating. Unknown values are marked `unknown` / `null` / `[]` rather than guessed.
+Every record cites primary government sources (with reputable named secondary sources accepted for fast-moving transitions per `SKILL.md` §2.13), carries an explicit `last_checked_at` date, and a `confidence` rating.
 
-> **Reference data, not legal advice. Consult a qualified EU compliance attorney, customs broker, or local regulatory authority before taking any business action.**
+> **Reference data, not legal advice. Consult a qualified compliance attorney, customs broker, or local regulatory authority before taking any business action.**
 
 ## What's in v0.1
 
 | Metric | Value |
 |---|---|
-| Records | ~14 (planned) |
-| Jurisdictions | 7 (DE, FR, IT, ES, NL, GB, US) |
-| Regimes per jurisdiction | 2 (packaging EPR + de minimis tariff) |
-| Language coverage | English (master) + Japanese (view) |
+| Records | 14 |
+| EPR records | 7 (DE / FR / IT / ES / NL / GB / US) |
+| de_minimis_tariff records | 7 (same geographies) |
+| Timeline events | 84 |
+| Confidence: high | 11 |
+| Confidence: medium | 3 |
+| Languages | English (master) + Japanese (view) |
+| Last checked | 2026-04-27 |
 | Schema version | 0.1 |
 | License | CC-BY 4.0 |
 
-The 7 v0.1 jurisdictions:
+The 7 geographies covered:
 
-1. Germany (DE)
-2. France (FR)
-3. Italy (IT)
-4. Spain (ES)
-5. Netherlands (NL)
-6. United Kingdom (GB)
-7. United States (US)
+1. Germany (DE) — VerpackG / ZSVR / LUCID
+2. France (FR) — AGEC / CITEO / Triman
+3. Italy (IT) — D.Lgs 152/2006 / CONAI
+4. Spain (ES) — Royal Decree 1055/2022 / Ecoembes
+5. Netherlands (NL) — Packaging Management Decree 2014 / Verpact
+6. United Kingdom (GB) — pEPR Regulations 2024 / PackUK
+7. United States (US, CA representative) — SB 54 / CalRecycle / CAA
 
 ## How to use
 
@@ -73,9 +73,9 @@ print(ds["train"][0])
 # {'id': 'epr_de_packaging', 'record_type': 'packaging_epr', 'country': 'DE', ...}
 ```
 
-### Direct JSON fetch (preserves nested arrays + record_type discrimination)
+### Direct JSON fetch (preserves nested structure)
 
-The CSV is the default split (flattened union of both record types), but the JSON file preserves the original structure and `oneOf` discrimination by `record_type`. Use the JSON if your code needs to filter by record_type cleanly.
+The CSV is the default split (flattened union of both record types, with the timeline collapsed to a latest-event view), but the JSON file preserves the original structure including the full `timeline` array and the `oneOf` discrimination by `record_type`. Use the JSON if your code needs to filter by `record_type` or walk the complete event log.
 
 ```python
 import json, urllib.request
@@ -86,6 +86,10 @@ data = json.load(urllib.request.urlopen(url))
 # Filter by record type
 epr_records = [r for r in data["records"] if r["record_type"] == "packaging_epr"]
 tariff_records = [r for r in data["records"] if r["record_type"] == "de_minimis_tariff"]
+
+# Walk the timeline of one record
+for ev in data["records"][0]["timeline"]:
+    print(ev["date"], ev["event_type"], ev["description_en"])
 ```
 
 ### Schema validation
@@ -101,7 +105,7 @@ jsonschema.validate(dataset, schema)   # raises on first failure
 
 ## Schema
 
-The full JSON Schema (Draft 2020-12) ships in this dataset as `schema.json`. Two record types share the same array, discriminated by `record_type`:
+The full JSON Schema (Draft 2020-12) ships in this dataset as `schema.json`. Two record types share the same array, discriminated by `record_type`.
 
 ### Common fields (both types)
 
@@ -110,11 +114,13 @@ The full JSON Schema (Draft 2020-12) ships in this dataset as `schema.json`. Two
 | `id` | string | `epr_<cc>_packaging` or `tariff_<cc>_de_minimis` |
 | `record_type` | const | `"packaging_epr"` or `"de_minimis_tariff"` |
 | `country` | string | ISO 3166-1 alpha-2 (uppercase) |
-| `country_name_en/ja` | string | English master + Japanese view |
-| `notes_en/ja` | string | Material context and carve-outs |
+| `country_name_en` / `country_name_ja` | string | English master + Japanese view |
+| `notes_en` / `notes_ja` | string | Material context and carve-outs |
 | `source_urls` | array of URI | All authoritative sources cited |
 | `last_checked_at` | string (ISO date) | Verification date |
 | `confidence` | enum | `high` / `medium` / `low` / `unknown` |
+| `current_state` | object | `{ status, as_of }`; status enum `active` / `suspended` / `scheduled_for_removal` / `removed` / `unknown` |
+| `timeline` | array of object | Append-only event log. Substantive events sorted descending; `initial_verification` foundation marker pinned to array tail |
 
 ### `packaging_epr` specific
 
@@ -143,17 +149,17 @@ The full JSON Schema (Draft 2020-12) ships in this dataset as `schema.json`. Two
 | `special_regimes` | array of string | Voluntary regimes (`IOSS`, `OSS`, etc.) |
 | `reporting_burden_en/ja` | string | Free-text declaration summary |
 
-The CSV at `epr_compliance_v0.1.csv` is a flattened union view of both record types (record_type-specific fields appear empty for the other type). Both files are kept bit-identical with the canonical sources in the GitHub repository.
+The CSV at `epr_compliance_v0.1.csv` is a flattened 37-column view of both record types (record_type-specific fields appear empty for the other type; the `timeline` is collapsed to a latest-event view via `latest_event_*` and `timeline_event_count` columns). The complete timeline is preserved in JSON only. Both files are kept bit-identical with the canonical sources in the GitHub repository.
 
 ## Important notice
 
-> **Reference data, not legal advice.**
+> **Reference only. Always verify with official sources before taking compliance, customs, or tax actions.**
 
-EPR registration deadlines, tariff thresholds, and marketplace liability rules **change frequently** and have direct legal and financial consequences. Confirm directly with the relevant national EPR registration authority, customs schedule, or treasury / tax agency — and consult a qualified EU compliance attorney or licensed customs broker before taking any business action. The dataset maintainers accept no liability for outcomes derived from this data.
+Cross-border compliance rules change frequently and have direct legal and financial consequences. Confirm directly with qualified attorneys, customs brokers, or local regulatory authorities before making business decisions. The dataset maintainers accept no liability for outcomes derived from this data.
 
 ## Update cadence
 
-The dataset is automatically re-fetched and re-extracted weekly (Mondays 03:00 UTC) by a GitHub Actions workflow in the source repository. Each run produces a pull request with a structured diff against the prior snapshot. Updates are merged into the canonical dataset only after human review, and the merged result is mirrored here on Hugging Face.
+The dataset is automatically re-fetched and re-extracted weekly (Mondays 03:00 UTC) by a GitHub Actions workflow in the source repository. Each run produces a pull request against the canonical GitHub repository with a structured diff against the prior snapshot. Updates are merged into the canonical dataset only after human review, and the merged result is mirrored here on Hugging Face.
 
 You can pin to a specific revision using the standard HF dataset versioning, e.g. `load_dataset("Aulvem/epr-compliance", revision="<commit-sha>")`.
 
@@ -161,11 +167,11 @@ You can pin to a specific revision using the standard HF dataset versioning, e.g
 
 | Version | Focus |
 |---|---|
-| v0.1 (current) | 7 jurisdictions × 2 regimes (~14 records) |
-| v0.2 | WEEE EPR + battery EPR + textile EPR (additive `record_type` values) |
-| v0.3 | Industry-specific overlays (cosmetics, food contact, electronics) |
-| v1.0 | Public REST API with route-by-jurisdiction + route-by-product-category endpoints |
-| v2.0 | MCP server for direct AI-agent integration (Claude, ChatGPT, Cursor) |
+| v0.1 (current) | 14 records, packaging EPR + de minimis tariff |
+| v0.2 | WEEE EPR, textile EPR; broader marketplace liability data |
+| v0.3 | Asia-Pacific (JP / KR / TW) and additional US states |
+| v1.0 | Public REST API for cross-border compliance queries |
+| v2.0 | MCP server for direct AI-agent integration |
 
 Schema changes are additive — v0.1-pinned consumers will not be broken by later versions.
 
@@ -181,7 +187,7 @@ Issues, pull requests, and inaccuracy reports should go there. This Hugging Face
 
 If you use this dataset in research, products, or downstream tooling, please cite as:
 
-> epr_compliance contributors (2026). *EPR + De Minimis Tariff Compliance Dataset* (v0.1). Available at https://huggingface.co/datasets/Aulvem/epr-compliance (mirror) and https://github.com/aulvem/epr_compliance (canonical), licensed under CC-BY 4.0.
+> epr_compliance contributors (2026). *epr_compliance: AI-readable EPR + De Minimis Tariff Compliance Dataset* (v0.1). Available at https://huggingface.co/datasets/Aulvem/epr-compliance (mirror) and https://github.com/aulvem/epr_compliance (canonical), licensed under CC-BY 4.0.
 
 CC-BY 4.0 requires attribution; the citation above — or any substantively equivalent form that names the dataset, version, and license — satisfies that requirement.
 
@@ -189,7 +195,7 @@ CC-BY 4.0 requires attribution; the citation above — or any substantively equi
 
 Released under [Creative Commons Attribution 4.0 International (CC-BY 4.0)](https://creativecommons.org/licenses/by/4.0/). You are free to share and adapt, including for commercial use, provided you give appropriate credit.
 
-The underlying regulation text and authority names remain the property of each government / authority. This dataset extracts factual information (registration requirements, threshold values, frequency enums) under principles applicable to factual extraction; it does not redistribute the original prose. If you republish raw regulator-authored text obtained via the source URLs, observe each authority's own terms.
+The underlying regulatory text remains the property of each government and regulator. This dataset extracts factual information (registration thresholds, fee structures, deadlines, penalty caps) under principles applicable to factual extraction; it does not redistribute the original legislative or regulatory prose. If you republish raw regulator-authored text obtained via the source URLs, observe each regulator's own terms.
 
 ## Contact
 
