@@ -57,3 +57,7 @@ data/epr_compliance_v0.1.previous.json
 # Internal strategy docs — never commit
 /internal/
 *-internal.md
+
+# Commercial product builds and design docs — never commit
+/pro_build/
+/pro_design/
