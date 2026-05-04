@@ -191,6 +191,27 @@ If you use this dataset in research, products, or downstream tooling, please cit
 
 CC-BY 4.0 requires attribution; the citation above — or any substantively equivalent form that names the dataset, version, and license — satisfies that requirement.
 
+## Pro edition (commercial / audit-grade)
+
+The free baseline above is the AI-readable structured layer.
+The **Pro edition** adds audit-grade metadata that compliance teams need:
+
+- **Extraction evidence** — original source URLs, fetched timestamps, and snippets supporting each field
+- **Confidence rationale** — documented decision factors usable directly in ISO / SOC 2 audit trails
+- **Change history** — structured version log for tracking regulatory amendments over time
+- **Cross-references** — links to related EU regulations and other Aulvem datasets
+- **Compliance officer notes** — pitfalls, recommended actions, official contacts, time estimates
+
+Three tiers:
+
+| Tier | Price | Use case | Get it |
+|------|-------|----------|--------|
+| Snapshot | $19 | Personal / single-user research | [aulvem.gumroad.com/l/xqtzbb](https://aulvem.gumroad.com/l/xqtzbb) |
+| Subscription | $79 / year | Internal corporate use + 52 weekly updates + 4 quarterly briefs | [aulvem.gumroad.com/l/hnkxj](https://aulvem.gumroad.com/l/hnkxj) |
+| Commercial License | $499 / year | Redistribution / white-label / REST API rights + 1 annual customization | [aulvem.gumroad.com/l/mhxxhf](https://aulvem.gumroad.com/l/mhxxhf) |
+
+The free edition (this dataset) remains permanently free under CC-BY 4.0 and continues to receive weekly updates. Pro is a strict superset; Pro purchase does not replace your access to the free edition.
+
 ## License
 
 Released under [Creative Commons Attribution 4.0 International (CC-BY 4.0)](https://creativecommons.org/licenses/by/4.0/). You are free to share and adapt, including for commercial use, provided you give appropriate credit.

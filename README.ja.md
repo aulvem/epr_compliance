@@ -70,6 +70,27 @@ cat data/epr_compliance_v0.1.csv
 
 プログラムから利用する場合は、特定のスキーマバージョン(`v0.1`)に固定してください。スキーマの破壊的変更は `v0.2`, `v0.3` のように別バージョンで公開され、既存バージョンへの上書きは行いません。
 
+## Pro 版(商用 / 監査品質)
+
+上記の無料版は AI 読み取り可能な構造化レイヤーです。
+**Pro 版** は、コンプライアンスチームが必要とする監査品質のメタデータを追加します:
+
+- **抽出根拠 (extraction_evidence)** — 元ソース URL、取得タイムスタンプ、各フィールドを支えるスニペット
+- **信頼度判断記録 (confidence_rationale)** — ISO / SOC 2 監査の証跡としてそのまま使える意思決定要因の文書化
+- **変更履歴 (change_history)** — 規制改正の経年追跡のための構造化バージョンログ
+- **クロスリファレンス (cross_references)** — 関連 EU 規制および他の Aulvem データセットへのリンク
+- **コンプライアンス担当者向けノート (compliance_officer_notes)** — 落とし穴、推奨アクション、公式連絡先、所要時間目安
+
+3 つの tier:
+
+| Tier | 価格 | 用途 | 購入 |
+|------|------|------|------|
+| Snapshot | $19 | 個人 / 単独ユーザー調査 | [aulvem.gumroad.com/l/xqtzbb](https://aulvem.gumroad.com/l/xqtzbb) |
+| Subscription | $79/年 | 社内利用 + 週次更新 52 回 + 四半期ブリーフ 4 回 | [aulvem.gumroad.com/l/hnkxj](https://aulvem.gumroad.com/l/hnkxj) |
+| Commercial License | $499/年 | 再配布 / white-label / REST API 権 + 年 1 回のカスタマイズ | [aulvem.gumroad.com/l/mhxxhf](https://aulvem.gumroad.com/l/mhxxhf) |
+
+無料版(本データセット)は CC-BY 4.0 のもと永続的に無料で、週次更新も継続します。Pro 版は無料版の厳密な上位集合で、Pro 版の購入が無料版へのアクセスを置き換えるものではありません。
+
 ## ライセンスと出典表記
 
 本データセットは [クリエイティブ・コモンズ 表示 4.0 国際 (CC-BY 4.0)](LICENSE) で公開されます。出典を明記いただければ、商用利用を含めた共有・改変が自由です。
